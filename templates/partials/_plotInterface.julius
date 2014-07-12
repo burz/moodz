@@ -21,10 +21,10 @@ function setupMoodzChart(labels, data) {
         scaleGridLineWidth : 0.25,
         bezierCurve : true,
         bezierCurveTension : 0.4,
-        pointDot : false,
+        pointDot : true,
         datasetStroke : false,
         datasetFill : false,
-        showTooltips: false
+        showTooltips: true
     };
 
     chart.Line(chartData, options);

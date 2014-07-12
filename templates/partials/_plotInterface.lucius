@@ -1,0 +1,10 @@
+#plot {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+}
+
+#newMood {
+    position: absolute;
+    top: 85%;
+}

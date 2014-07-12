@@ -16,7 +16,7 @@ Chart.defaults.global = {
     scaleShowLabels: true,
     scaleLabel: "<%=value%>",
     scaleIntegersOnly: true,
-    scaleBeginAtZero: false,
+    scaleBeginAtZero: true,
     scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
     scaleFontSize: 12,
     scaleFontStyle: "normal",
