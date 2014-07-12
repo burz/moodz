@@ -11,6 +11,7 @@ getMoodR :: Handler Html
 getMoodR = do
     renderUrl <- getUrlRender
     defaultLayout $ do
+        setTitle "Create Mood"
         let url = renderUrl MoodR
         let home = renderUrl HomeR
         $(widgetFile "mood")

@@ -8,6 +8,7 @@ import Import
 
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
+    setTitle "Moodz"
     let _plotInterface = _plotInterface'
     $(widgetFile "homepage")
 
