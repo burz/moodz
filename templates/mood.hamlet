@@ -1,11 +1,10 @@
-<h1>_{MsgCreateMood}
+<center>
+    <h3>_{MsgCreateMood}
 
 <label for="moodValue">_{MsgMoodValue}
 <input type=text id="moodValue">
 
 <label for"moodNotes">_{MsgMoodNotes}
 <input type=text id="moodNotes">
-
-<br>
 
 <button id="moodSave">_{MsgMoodSave}

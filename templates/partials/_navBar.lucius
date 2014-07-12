@@ -1,0 +1,7 @@
+a {
+    link { color: inherit; }
+    active { color: inherit; }
+    visited { color: inherit; }
+    hover { color: inherit; }
+    color: #000000;
+}
