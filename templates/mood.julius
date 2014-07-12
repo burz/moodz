@@ -13,8 +13,6 @@ function sendMood(type) {
     });
 
     request.done(function (msg) {
-        alert("Mood saved");
-
         window.location = "#{rawJS home}";
     });
 

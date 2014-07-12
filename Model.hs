@@ -8,7 +8,7 @@ import Database.Persist.Quasi
 import Data.Time
 import Data.Typeable (Typeable)
 
-import Prelude (Int, Show, ($), read)
+import Prelude (String, Int, Show, ($), read, (<), (>))
 import Control.Applicative ((<$>), (<*>))
 import Control.Monad (mzero)
 
@@ -27,8 +27,11 @@ instance ToJSON (Entity Mood) where
         , "notes" .= moodNotes m
         ]
 
+readMoodValue :: String -> Int
+readMoodValue t = let v = read t in if v > 100 then 100 else if v < 0 then 0 else v
+
 instance FromJSON Mood where
-    parseJSON (Object o) = (\v c n -> Mood (read v) c n)
+    parseJSON (Object o) = (\v c n -> Mood (readMoodValue v) c n)
         <$> o .: "value"
         <*> o .: "created"
         <*> o .: "notes"
