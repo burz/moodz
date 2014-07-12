@@ -1,0 +1,28 @@
+function sendMood(type) {
+    var data = {
+        value: $("#moodValue").val(),
+        created: new Date(),
+        notes: $("#moodNotes").val()
+    };
+
+    var request = $.ajax({
+        type: type,
+        url: "#{rawJS url}",
+        contentType: "application/json",
+        data: JSON.stringify(data)
+    });
+
+    request.done(function (msg) {
+        alert("Mood saved");
+
+        window.location = "#{rawJS home}";
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Mood save failed: " + textStatus);
+    });
+}
+
+$("#moodSave").click(function () {
+    sendMood("POST");
+});

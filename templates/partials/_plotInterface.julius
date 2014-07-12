@@ -1,0 +1,62 @@
+function setupMoodzChart(labels, data) {
+    var chartData = { 
+        labels: labels,
+        datasets: [
+            {   
+                label: "Moodz",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: data
+            }   
+        ]   
+    };  
+    
+    var options = { 
+        scaleShowGridLines : true,
+        scaleGridLineColor : "rgba(1,1,1,.5)",
+        scaleGridLineWidth : 0.25,
+        bezierCurve : true,
+        bezierCurveTension : 0.4,
+        pointDot : false,
+        datasetStroke : false,
+        datasetFill : false,
+        showTooltips: false
+    };
+
+    chart.Line(chartData, options);
+}
+
+function loadMoodzChart() {
+    var request = $.ajax({
+        type: "GET",
+        url: "#{rawJS url}"
+    });
+
+    request.done(function (msg) {
+        var moodz = msg.moodz;
+
+        var labels = [];
+        var values = [];
+
+        for(var i = 0; i < moodz.length; i++)
+        {
+            var dateLabel = new Date(moodz[i].created).toDateString();
+
+            labels.unshift(dateLabel);
+            values.unshift(moodz[i].value);
+        }
+
+        setupMoodzChart(labels, values);
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Mood save failed: " + textStatus);
+    });
+}
+
+$("document").ready(loadMoodzChart());
+

@@ -1,0 +1,6 @@
+<h1>_{MsgHomeTitle}
+
+^{_plotInterface}
+
+<a href=@{MoodR}>
+    <button id="newMood">_{MsgNewMood}
