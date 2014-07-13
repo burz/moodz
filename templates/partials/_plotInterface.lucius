@@ -8,3 +8,9 @@
     position: absolute;
     top: 85%;
 }
+
+#averageTimeSelect {
+    position: absolute;
+    top: 85%;
+    right: 10%;
+}
