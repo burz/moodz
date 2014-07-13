@@ -5,8 +5,11 @@
         <button id="showMoodz">_{MsgShowMoodz}
         <button id="showAverages">_{MsgShowAverages}
 
-        <select id="averageTimeSelect">
-            <option value="3" selected=true>_{MsgThreeDay}
-            <option value="7">_{MsgWeek}
-            <option value="-1">_{MsgMonth}
-            <option value="-2">_{MsgYear}
+        <br>
+
+        <div id="averageTimeSelectContainer">
+            <select id="averageTimeSelect">
+                <option value="3" selected=true>_{MsgThreeDay}
+                <option value="7">_{MsgWeek}
+                <option value="-1">_{MsgMonth}
+                <option value="-2">_{MsgYear}
