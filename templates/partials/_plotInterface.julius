@@ -28,41 +28,42 @@ function calculateAverage(value, index, data, type) {
     return total / length;
 }
 
-function setupMoodzChart(labels, data) {
-    var total = 0;
+function setupMoodzChart(labels, data, showMoodz, showAverages) {
+    var datasets = [];
 
-    for(var i = 0; i < data.length; i++) {
-        total += data[i];
+    if(showMoodz) {
+        datasets.push({
+            label: "Moodz",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: data
+        });
     }
 
-    var averageType = parseInt($("#averageTimeSelect").val());
+    if(showAverages) {
+        var averageType = parseInt($("#averageTimeSelect").val());
+
+        datasets.push({
+            label: "Average Mood",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: data.map(function (value, index, data) {
+                return calculateAverage(value, index, data, averageType);
+            })
+        });
+    }
 
     var chartData = { 
         labels: labels,
-        datasets: [
-            {   
-                label: "Moodz",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: data
-            },
-            {
-                label: "Average Mood",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: data.map(function (value, index, data) {
-                    return calculateAverage(value, index, data, averageType);
-                })
-            }   
-        ]   
+        datasets: datasets
     };  
     
     var options = { 
@@ -80,7 +81,7 @@ function setupMoodzChart(labels, data) {
     chart.Line(chartData, options);
 }
 
-function loadMoodzChart() {
+function loadMoodzChart(showMoodz, showAverages) {
     var request = $.ajax({
         type: "GET",
         url: "#{rawJS url}"
@@ -100,7 +101,7 @@ function loadMoodzChart() {
             values.unshift(moodz[i].value);
         }
 
-        setupMoodzChart(labels, values);
+        setupMoodzChart(labels, values, showMoodz, showAverages);
     });
 
     request.fail(function (jqXHR, textStatus) {
@@ -108,15 +109,60 @@ function loadMoodzChart() {
     });
 }
 
-$("document").ready(loadMoodzChart());
-
-$("#averageTimeSelect").change(function () {
+function reloadChart(showMoodz, showAverages) {
     $("#plotCanvas").replaceWith('<canvas id="plotCanvas" width="1050" height="400">');
 
     chartContext = $("#plotCanvas").get(0).getContext("2d");
 
     chart = new Chart(chartContext);
 
-    loadMoodzChart();
+    loadMoodzChart(showMoodz, showAverages);
+}
+
+var moodzOnColor = "rgba(220,220,220,0.2)";
+var averagesOnColor = "rgba(151,187,205,0.2)";
+
+var moodzOn = false;
+var averagesOn = false;
+
+$("#averageTimeSelect").change(function () {
+    reloadChart(moodzOn, averagesOn);
+});
+
+function toggleShowMoodz() {
+    if(moodzOn) {
+        $("#showMoodz").css("background-color", "#FFF");
+
+        reloadChart(false, averagesOn);
+    }
+    else {
+        $("#showMoodz").css("background-color", moodzOnColor);
+
+        reloadChart(true, averagesOn);
+    }
+
+    moodzOn = !moodzOn;
+}
+
+function toggleShowAverages() {
+    if(averagesOn) {
+        $("#showAverages").css("background-color", "#FFF");
+
+        reloadChart(moodzOn, false);
+    }
+    else {
+        $("#showAverages").css("background-color", averagesOnColor);
+
+        reloadChart(moodzOn, true);
+    }
+
+    averagesOn = !averagesOn;
+}
+
+$("#showMoodz").click(toggleShowMoodz);
+$("#showAverages").click(toggleShowAverages);
+
+$("document").ready(function () {
+    toggleShowMoodz();
 });
 

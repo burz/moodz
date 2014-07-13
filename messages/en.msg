@@ -1,5 +1,8 @@
 HomeTitle: Moodz
 
+ShowMoodz: Show Moodz
+ShowAverages: Show Averages
+
 NewMood: New Mood
 CreateMood: Create Mood
 MoodValue: Your Mood

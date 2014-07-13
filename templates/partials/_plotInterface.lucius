@@ -9,8 +9,12 @@
     top: 85%;
 }
 
-#averageTimeSelect {
+#averages {
     position: absolute;
     top: 85%;
     right: 10%;
+}
+
+#averageTimeSelect {
+    visibility: hidden;
 }
