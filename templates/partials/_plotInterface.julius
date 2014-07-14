@@ -16,6 +16,7 @@ function calculateAverage(value, index, data, type) {
     var startingPosition = index - Math.floor(length / 2);
 
     var total = 0;
+    var points = length;
 
     for(var i = 0; i < length; i++) {
         var index = startingPosition + i;
@@ -23,9 +24,12 @@ function calculateAverage(value, index, data, type) {
         if(index >= 0 && index < data.length) {
             total += data[startingPosition + i];
         }
+        else {
+            points--;
+        }
     }
 
-    return total / length;
+    return total / points;
 }
 
 function setupMoodzChart(labels, data, showMoodz, showAverages) {
