@@ -4,7 +4,7 @@ var chart = new Chart(chartContext);
 
 Chart.defaults.global = {
     animation: true,
-    animationSteps: 60,
+    animationSteps: 25,
     animationEasing: "easeOutQuart",
     showScale: true,
     scaleOverride: false,

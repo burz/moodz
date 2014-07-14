@@ -1,10 +1,15 @@
 module Handler.Partials
-( _plot'
+( _userInfo'
+, _plot'
 , _plotInterface'
 ) where
 
 import Import
 import Text.Julius
+import Yesod.Auth
+
+_userInfo' :: User -> Widget
+_userInfo' user = $(widgetFile "partials/_userInfo")
 
 _plot' :: Widget
 _plot' = do
