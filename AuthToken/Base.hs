@@ -4,18 +4,21 @@ module AuthToken.Base
 ) where
 
 import Import
-import Data.Text.Encoding (decodeUtf8)
+import Data.Text.Encoding (decodeUtf8With)
 import Data.Time
 import System.Entropy
 
 tokenSize :: Int
-tokenSize = 512
+tokenSize = 64
 
 newToken :: UserId -> Handler AuthToken
 newToken userId = do
     t <- liftIO getCurrentTime
-    b <- liftIO $ getEntropy 512
-    return $ AuthToken userId t (decodeUtf8 b)
+    b <- liftIO $ getEntropy tokenSize
+    let at = AuthToken userId t (decodeUtf8With badByteHandler b)
+    _ <- runDB $ insert at
+    return at
+    where badByteHandler _ _ = Just '-'
 
 hasExpired :: AuthToken -> Bool
 hasExpired time = False

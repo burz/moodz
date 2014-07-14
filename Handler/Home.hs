@@ -2,6 +2,7 @@ module Handler.Home
 ( getHomeR
 ) where
 
+import AuthToken.Base
 import Handler.Partials
 
 import Import
@@ -14,9 +15,11 @@ getHomeR = do
         Nothing -> defaultLayout [whamlet|
             <center>
                 <a href=@{AuthR LoginR}>Sign in or sign up|]
-        Just (Entity _ user) -> defaultLayout $ do
-            setTitle "Moodz"
-            let _userInfo = _userInfo' user
-            let _plotInterface = _plotInterface'
-            $(widgetFile "homepage")
+        Just (Entity uid user) -> do
+            authToken <- getToken uid
+            defaultLayout $ do
+                setTitle "Moodz"
+                let _userInfo = _userInfo' user authToken
+                let _plotInterface = _plotInterface'
+                $(widgetFile "homepage")
 

@@ -8,8 +8,8 @@ import Import
 import Text.Julius
 import Yesod.Auth
 
-_userInfo' :: User -> Widget
-_userInfo' user = $(widgetFile "partials/_userInfo")
+_userInfo' :: User -> AuthToken -> Widget
+_userInfo' user authToken = $(widgetFile "partials/_userInfo")
 
 _plot' :: Widget
 _plot' = do

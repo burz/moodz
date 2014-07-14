@@ -3,6 +3,7 @@ module Handler.Mood
 , postMoodR
 ) where
 
+import AuthToken.Base
 import Handler.Partials
 
 import Import
@@ -12,11 +13,12 @@ import Yesod.Auth
 
 getMoodR :: Handler Html
 getMoodR = do
-    Entity _ user <- requireAuth
+    Entity uid user <- requireAuth
+    authToken <- getToken uid
     renderUrl <- getUrlRender
     defaultLayout $ do
         setTitle "Create Mood"
-        let _userInfo = _userInfo' user
+        let _userInfo = _userInfo' user authToken
         let url = renderUrl MoodR
         let home = renderUrl HomeR
         $(widgetFile "mood")
