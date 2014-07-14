@@ -173,6 +173,8 @@ $("#showAverages").click(toggleShowAverages);
 $("document").ready(function () {
     toggleShowMoodz();
 
+    $("#showAverages").css("background-color", "#FFF");
+
     $("#averageTimeSelectContainer").hide();
 });
 

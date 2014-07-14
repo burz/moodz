@@ -37,3 +37,10 @@ instance FromJSON Mood where
         <*> o .: "notes"
     parseJSON _ = mzero
 
+instance ToJSON (Entity AuthToken) where
+    toJSON (Entity aid a) = object
+        [ "id" .= (String $ toPathPiece aid)
+        , "user" .= authTokenUser a
+        , "value" .= authTokenValue a
+        ]
+
