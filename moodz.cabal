@@ -73,6 +73,7 @@ library
                  , wai-logger                    >= 2.1        && < 2.2
                  , time                          == 1.4.*
                  , http-types                    == 0.8.*
+                 , entropy                       == 0.3.*
 
 executable         moodz
     if flag(library-only)

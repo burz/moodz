@@ -4,13 +4,18 @@ module AuthToken.Base
 ) where
 
 import Import
+import Data.Text.Encoding (decodeUtf8)
 import Data.Time
+import System.Entropy
+
+tokenSize :: Int
+tokenSize = 512
 
 newToken :: UserId -> Handler AuthToken
 newToken userId = do
     t <- liftIO getCurrentTime
-    let v = "lolololol"
-    return $ AuthToken userId t v
+    b <- liftIO $ getEntropy 512
+    return $ AuthToken userId t (decodeUtf8 b)
 
 hasExpired :: AuthToken -> Bool
 hasExpired time = False
