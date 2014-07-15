@@ -4,7 +4,3 @@
     --
 
     <a href=@{AuthR LogoutR}>Logout
-
-<div id="authToken">
-    <input id="authTokenUser" value=#{toPathPiece $ authTokenUser authToken}>
-    <input id="authTokenValue" value=#{authTokenValue authToken}>

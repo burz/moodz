@@ -3,7 +3,3 @@
     top: 5%;
     right: 5%;
 }
-
-#authToken {
-    display: none;
-}
