@@ -18,6 +18,6 @@ getHomeR = do
             defaultLayout $ do
                 setTitle "Moodz"
                 let _userInfo = _userInfo' user
-                let _plotInterface = _plotInterface'
+                let _plotInterface = _plotInterface' uid
                 $(widgetFile "homepage")
 

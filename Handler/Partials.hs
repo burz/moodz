@@ -16,10 +16,10 @@ _plot' = do
     addScriptRemote "/static/js/Chart.min.js"
     $(widgetFile "partials/_plot")
 
-_plotInterface' :: Widget
-_plotInterface' = do
+_plotInterface' :: UserId -> Widget
+_plotInterface' userId = do
     renderUrl <- getUrlRender
     let _plot = _plot'
-    let url = renderUrl MoodzR
+    let url = renderUrl $ MoodzR userId
     $(widgetFile "partials/_plotInterface")
 

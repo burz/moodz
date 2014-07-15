@@ -9,10 +9,7 @@ Email
     verkey Text Maybe
     UniqueEmail email
 Mood
+    user UserId
     value Int
     created UTCTime default=CURRENT_TIME
     notes Text Maybe
-AuthToken
-    user UserId
-    lastUsed UTCTime default=CURRENT_TIME
-    value Text

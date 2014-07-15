@@ -1,7 +1,6 @@
 function sendMood(type) {
     var data = {
         value: $("#moodValue").val(),
-        created: new Date(),
         notes: $("#moodNotes").val()
     };
 

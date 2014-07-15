@@ -6,5 +6,5 @@
 
 / HomeR GET
 
-/mood MoodR GET POST
-/moodz MoodzR GET
+/mood MoodR GET
+/moodz/#UserId MoodzR GET POST

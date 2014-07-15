@@ -19,7 +19,6 @@ library
                      Settings
                      Settings.StaticFiles
                      Settings.Development
-                     AuthToken.Base
                      Handler.Partials
                      Handler.Home
                      Handler.Mood
