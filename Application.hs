@@ -25,6 +25,10 @@ import Network.Wai.Logger (clockDateCacher)
 import Data.Default (def)
 import Yesod.Core.Types (loggerSet, Logger (Logger))
 
+#ifndef DEVELOPMENT
+import qualified Network.Wai.Middleware.HttpAuth as HttpAuth
+#endif
+
 -- Import all relevant handler modules here.
 -- Don't forget to add new modules to your cabal file!
 import Handler.Home
@@ -56,7 +60,13 @@ makeApplication conf = do
     -- Create the WAI application and apply middlewares
     app <- toWaiAppPlain foundation
     let logFunc = messageLoggerSource foundation (appLogger foundation)
+#ifdef DEVELOPMENT
     return (logWare $ defaultMiddlewaresNoLogging app, logFunc)
+#else
+    let auth u p = return $ u == "moodz" && p == "makeMoodz"
+    let httpAuth = HttpAuth.basicAuth auth "moodz"
+    return (logWare $ httpAuth $ defaultMiddlewaresNoLogging app, logFunc)
+#endif
 
 -- | Loads up any necessary settings, creates your foundation datatype, and
 -- performs some initialization.
