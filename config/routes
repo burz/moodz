@@ -9,4 +9,5 @@
 /mood          MoodR  GET
 /moodz/#UserId MoodzR GET POST
 
-/variables/#UserId VariablesR GET POST
+/variables/#UserId                    VariablesR      GET POST
+/variables/#UserId/values/#VariableId VariableValuesR GET POST

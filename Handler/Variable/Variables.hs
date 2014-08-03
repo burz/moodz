@@ -3,7 +3,7 @@ module Handler.Variable.Variables
 , postVariablesR
 ) where
 
-import Auth
+import Handler.Auth
 
 import Import
 import Data.Time

@@ -8,7 +8,7 @@ import Database.Persist.Quasi
 import Data.Time
 import Data.Typeable (Typeable)
 
-import Prelude (String, Int, Show, ($), read, (<), (>), Maybe)
+import Prelude (String, Int, Show, ($), read, (<), (>), Maybe(..), (==))
 import Control.Applicative ((<$>), (<*>))
 import Control.Monad (mzero)
 
@@ -29,11 +29,15 @@ instance ToJSON (Entity Mood) where
 
 data MoodPost = MoodPost Int (Maybe Text)
 
-readMoodValue :: String -> Int
-readMoodValue t = let v = read t in if v > 100 then 100 else if v < 0 then 0 else v
+validateMoodValue :: Int -> Int
+validateMoodValue v = if v > 100 then 100 else if v < 0 then 0 else v
+
+throwOutEmptyString :: Text -> Maybe Text
+throwOutEmptyString t = if t == "" then Nothing else Just t
 
 instance FromJSON MoodPost where
-    parseJSON (Object o) = (\v n -> MoodPost (readMoodValue v) n)
+    parseJSON (Object o) = (\v n ->
+        MoodPost (validateMoodValue v) $ throwOutEmptyString n)
         <$> o .: "value"
         <*> o .: "notes"
     parseJSON _ = mzero
@@ -50,5 +54,22 @@ data VariablePost = VariablePost Text
 instance FromJSON VariablePost where
     parseJSON (Object o) = VariablePost
         <$> o .: "name"
+    parseJSON _ = mzero
+
+instance ToJSON (Entity VariableValue) where
+    toJSON (Entity vid v) = object
+        [ "id" .= (String $ toPathPiece vid)
+        , "value" .= variableValueValue v
+        , "created" .= variableValueCreated v
+        , "notes" .= variableValueNotes v
+        ]
+
+data VariableValuePost = VariableValuePost Int (Maybe Text)
+
+instance FromJSON VariableValuePost where
+    parseJSON (Object o) = (\v n ->
+        VariableValuePost v $ throwOutEmptyString n)
+        <$> o .: "value"
+        <*> o .: "notes"
     parseJSON _ = mzero
 

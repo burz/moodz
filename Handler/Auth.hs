@@ -1,4 +1,4 @@
-module Auth
+module Handler.Auth
 ( asyncAuth
 ) where
 

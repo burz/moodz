@@ -3,7 +3,7 @@ module Handler.Mood.Moodz
 , postMoodzR
 ) where
 
-import Auth
+import Handler.Auth
 
 import Import
 import Data.Time
