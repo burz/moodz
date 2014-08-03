@@ -38,3 +38,17 @@ instance FromJSON MoodPost where
         <*> o .: "notes"
     parseJSON _ = mzero
 
+instance ToJSON (Entity Variable) where
+    toJSON (Entity vid v) = object
+        [ "id" .= (String $ toPathPiece vid)
+        , "name" .= variableName v
+        , "created" .= variableCreated v
+        ]
+
+data VariablePost = VariablePost Text
+
+instance FromJSON VariablePost where
+    parseJSON (Object o) = VariablePost
+        <$> o .: "name"
+    parseJSON _ = mzero
+

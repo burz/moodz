@@ -1,4 +1,4 @@
-module Handler.Mood
+module Handler.Mood.Mood
 ( getMoodR
 ) where
 
@@ -17,5 +17,5 @@ getMoodR = do
         let _userInfo = _userInfo' user
         let url = renderUrl $ MoodzR uid
         let home = renderUrl HomeR
-        $(widgetFile "mood")
+        $(widgetFile "Mood/mood")
 

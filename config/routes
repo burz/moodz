@@ -2,9 +2,11 @@
 /auth   AuthR   Auth   getAuth
 
 /favicon.ico FaviconR GET
-/robots.txt RobotsR GET
+/robots.txt  RobotsR  GET
 
 / HomeR GET
 
-/mood MoodR GET
+/mood          MoodR  GET
 /moodz/#UserId MoodzR GET POST
+
+/variables/#UserId VariablesR GET POST

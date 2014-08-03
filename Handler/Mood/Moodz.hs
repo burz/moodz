@@ -1,22 +1,16 @@
-module Handler.Moodz
+module Handler.Mood.Moodz
 ( getMoodzR
 , postMoodzR
 ) where
 
+import Auth
+
 import Import
 import Data.Time
 import Network.HTTP.Types (status201)
-import Yesod.Auth
 
 makeResponse :: [Entity Mood] -> (ContentType, Content)
 makeResponse moodz = (typeJson, toContent $ object ["moodz" .= moodz])
-
-asyncAuth :: UserId -> Handler a -> Handler a
-asyncAuth userId handler = do
-    Entity uid _ <- requireAuth
-    if userId /= uid
-        then permissionDenied "Bad credentials"
-        else handler
 
 getMoodzR :: UserId -> Handler ()
 getMoodzR userId = asyncAuth userId $ do

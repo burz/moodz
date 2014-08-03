@@ -19,10 +19,12 @@ library
                      Settings
                      Settings.StaticFiles
                      Settings.Development
+                     Auth
                      Handler.Partials
                      Handler.Home
-                     Handler.Mood
-                     Handler.Moodz
+                     Handler.Mood.Mood
+                     Handler.Mood.Moodz
+                     Handler.Variable.Variables
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
