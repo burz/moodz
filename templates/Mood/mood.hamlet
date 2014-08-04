@@ -3,12 +3,21 @@
 <center>
     <h3>_{MsgCreateMood}
 
-<label for="moodValue">_{MsgMoodValue}
-<input type=text id="moodValue">
+<center>
+    <label for="moodValue">_{MsgMoodValue}
+    <div id="moodValue">
 
-<label for"moodNotes">_{MsgMoodNotes}
-<input type=text id="moodNotes">
+    <br>
 
-<br>
+    <div id="moodValueSlider">
 
-<button id="moodSave">_{MsgMoodSave}
+    <br>
+    <br>
+
+    <label for"moodNotes">_{MsgMoodNotes}
+    <input type=text id="moodNotes">
+
+    <br>
+    <br>
+
+    <button id="moodSave">_{MsgMoodSave}
