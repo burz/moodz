@@ -8,7 +8,7 @@ import Database.Persist.Quasi
 import Data.Time
 import Data.Typeable (Typeable)
 
-import Prelude (String, Int, Show, ($), read, (<), (>), Maybe(..), (==))
+import Prelude (String, Int, Show, ($), read, (<), (>), Maybe(..), (==), Double)
 import Control.Applicative ((<$>), (<*>))
 import Control.Monad (mzero)
 
@@ -64,11 +64,11 @@ instance ToJSON (Entity VariableValue) where
         , "notes" .= variableValueNotes v
         ]
 
-data VariableValuePost = VariableValuePost Int (Maybe Text)
+data VariableValuePost = VariableValuePost Double (Maybe Text)
 
 instance FromJSON VariableValuePost where
     parseJSON (Object o) = (\v n ->
-        VariableValuePost v $ throwOutEmptyString n)
+        VariableValuePost (read v) $ throwOutEmptyString n)
         <$> o .: "value"
         <*> o .: "notes"
     parseJSON _ = mzero

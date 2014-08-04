@@ -210,6 +210,13 @@ $("#createVariable").click(function () {
     window.location = "#{rawJS createVariableUrl}";
 });
 
+$("#createVariableValue").click(function () {
+    var base = "#{rawJS loadVariablesUrl}";
+    var tag = "/value/" + $("#variableSelect").val();
+
+    window.location = base + tag;
+});
+
 $("#showMoodz").click(toggleShowMoodz);
 $("#showAverages").click(toggleShowAverages);
 

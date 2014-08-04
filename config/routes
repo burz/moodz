@@ -11,4 +11,5 @@
 
 /variable/#UserId                     VariableR       GET
 /variables/#UserId                    VariablesR      GET POST
+/variables/#UserId/value/#VariableId  VariableValueR  GET
 /variables/#UserId/values/#VariableId VariableValuesR GET POST

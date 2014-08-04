@@ -19,6 +19,6 @@ Variable
     created UTCTime
 VariableValue
     variable VariableId
-    value Int
+    value Double
     created UTCTime
     notes Text Maybe

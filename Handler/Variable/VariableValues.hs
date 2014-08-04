@@ -13,13 +13,13 @@ makeResponse :: [Entity VariableValue] -> (ContentType, Content)
 makeResponse vv = (typeJson, toContent $ object ["variableValues" .= vv])
 
 getVariableValuesR :: UserId -> VariableId -> Handler ()
-getVariableValuesR userId variableId = authVariables userId variableId $ do
+getVariableValuesR userId variableId = authVariable userId variableId $ do
     variableValues <- runDB $ selectList
         [VariableValueVariable ==. variableId] [Desc VariableValueCreated]
     sendResponse $ makeResponse variableValues
 
 postVariableValuesR :: UserId -> VariableId -> Handler ()
-postVariableValuesR userId variableId = authVariables userId variableId $ do
+postVariableValuesR userId variableId = authVariable userId variableId $ do
     VariableValuePost v n <- requireJsonBody
     t <- liftIO getCurrentTime
     _ <- runDB . insert $ VariableValue variableId v t n

@@ -27,6 +27,7 @@ library
                      Handler.Variable.Auth
                      Handler.Variable.Variable
                      Handler.Variable.Variables
+                     Handler.Variable.VariableValue
                      Handler.Variable.VariableValues
 
     if flag(dev) || flag(library-only)
