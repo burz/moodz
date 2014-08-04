@@ -29,8 +29,8 @@ instance ToJSON (Entity Mood) where
 
 data MoodPost = MoodPost Int (Maybe Text)
 
-validateMoodValue :: Int -> Int
-validateMoodValue v = if v > 100 then 100 else if v < 0 then 0 else v
+validateMoodValue :: String -> Int
+validateMoodValue t = let v = read t in if v > 100 then 100 else if v < 0 then 0 else v
 
 throwOutEmptyString :: Text -> Maybe Text
 throwOutEmptyString t = if t == "" then Nothing else Just t
