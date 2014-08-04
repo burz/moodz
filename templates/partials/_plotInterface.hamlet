@@ -15,7 +15,15 @@
                 <option value="-2">_{MsgYear}
 
     <div id="variables">
-        <select id="varibleSelect">
+        <select id="variableSelect">
+            <option value="-1" selected=true>_{MsgChooseVariable}
+
         <button id="createVariable">_{MsgNewVariable}
+
+        <br>
+
+        <div id="variableOptionsContainer">
+            <button id="showVariable">_{MsgShowVariable}
+            <button id="createVariableValue">_{MsgCreateVariableValue}
 
     <button id="newMood">_{MsgNewMood}

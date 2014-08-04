@@ -18,3 +18,6 @@ NewVariable: New Variable
 CreateVariable: Create Variable
 VariableName: Name
 SaveVariable: Save Variable
+ChooseVariable: Choose Variable
+ShowVariable: Show Variable
+CreateVariableValue: New Value

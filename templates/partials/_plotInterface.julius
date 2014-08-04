@@ -171,6 +171,41 @@ $("#newMood").click(function () {
     window.location = "#{rawJS createMoodUrl}";
 });
 
+function loadVariables() {
+    var request = $.ajax({
+        type: "GET",
+        url: "#{rawJS loadVariablesUrl}"
+    });
+
+    request.done(function (msg) {
+        var variables = msg.variables;
+
+        $.each(variables, function (index, value) {
+            $("#variableSelect")
+                .append($("<option></option>")
+                    .attr("value", value.id)
+                    .text(value.name));
+        });
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Could not load variables: " + textStatus);
+    });
+
+    $("#variableOptionsContainer").hide();
+}
+
+$(loadVariables);
+
+$("#variableSelect").on("change", function () {
+    if(this.value === "-1") {
+        $("#variableOptionsContainer").hide();
+    }
+    else {
+        $("#variableOptionsContainer").show();
+    }
+});
+
 $("#createVariable").click(function () {
     window.location = "#{rawJS createVariableUrl}";
 });

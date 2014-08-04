@@ -22,6 +22,7 @@ _plotInterface' userId = do
     let _plot = _plot'
     let loadUrl = renderUrl $ MoodzR userId
     let createMoodUrl = renderUrl $ MoodR userId
+    let loadVariablesUrl = renderUrl $ VariablesR userId
     let createVariableUrl = renderUrl $ VariableR userId
     $(widgetFile "partials/_plotInterface")
 
