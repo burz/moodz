@@ -1,15 +1,19 @@
 module Handler.Auth
-( asyncAuth
+( authUser'
+, authUser
 ) where
 
 import Import
 
 import Yesod.Auth
 
-asyncAuth :: UserId -> Handler a -> Handler a
-asyncAuth userId handler = do
-    Entity uid _ <- requireAuth
+authUser' :: UserId -> (Entity User -> Handler a) -> Handler a
+authUser' userId handler = do
+    e@(Entity uid _) <- requireAuth
     if userId /= uid
         then permissionDenied "Bad credentials"
-        else handler
+        else handler e
+
+authUser :: UserId -> Handler a -> Handler a
+authUser userId handler = authUser' userId (\_ -> handler)
 

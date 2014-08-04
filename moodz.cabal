@@ -25,6 +25,7 @@ library
                      Handler.Mood.Mood
                      Handler.Mood.Moodz
                      Handler.Variable.Auth
+                     Handler.Variable.Variable
                      Handler.Variable.Variables
                      Handler.Variable.VariableValues
 

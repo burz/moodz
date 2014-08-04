@@ -14,3 +14,9 @@
     top: 85%;
     right: 10%;
 }
+
+#variables {
+    position: absolute;
+    top: 85%;
+    left: 30%;
+}

@@ -13,12 +13,12 @@ makeResponse :: [Entity Mood] -> (ContentType, Content)
 makeResponse moodz = (typeJson, toContent $ object ["moodz" .= moodz])
 
 getMoodzR :: UserId -> Handler ()
-getMoodzR userId = asyncAuth userId $ do
+getMoodzR userId = authUser userId $ do
     moodz <- runDB $ selectList [MoodUser ==. userId] [Desc MoodCreated]
     sendResponse $ makeResponse moodz
 
 postMoodzR :: UserId -> Handler Html
-postMoodzR userId = asyncAuth userId $ do
+postMoodzR userId = authUser userId $ do
     MoodPost v n <- requireJsonBody
     t <- liftIO getCurrentTime
     _ <- runDB . insert $ Mood userId v t n

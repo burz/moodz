@@ -20,6 +20,8 @@ _plotInterface' :: UserId -> Widget
 _plotInterface' userId = do
     renderUrl <- getUrlRender
     let _plot = _plot'
-    let url = renderUrl $ MoodzR userId
+    let loadUrl = renderUrl $ MoodzR userId
+    let createMoodUrl = renderUrl $ MoodR userId
+    let createVariableUrl = renderUrl $ VariableR userId
     $(widgetFile "partials/_plotInterface")
 

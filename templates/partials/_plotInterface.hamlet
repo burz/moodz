@@ -13,3 +13,9 @@
                 <option value="7">_{MsgWeek}
                 <option value="-1">_{MsgMonth}
                 <option value="-2">_{MsgYear}
+
+    <div id="variables">
+        <select id="varibleSelect">
+        <button id="createVariable">_{MsgNewVariable}
+
+    <button id="newMood">_{MsgNewMood}

@@ -7,9 +7,14 @@ NewMood: New Mood
 CreateMood: Create Mood
 MoodValue: Your Mood
 MoodNotes: Notes
-MoodSave: Save Mood
+SaveMood: Save Mood
 
 ThreeDay: Three Day
 Week: Week
 Month: Month
 Year: Year
+
+NewVariable: New Variable
+CreateVariable: Create Variable
+VariableName: Name
+SaveVariable: Save Variable

@@ -88,7 +88,7 @@ function setupMoodzChart(labels, data, showMoodz, showAverages) {
 function loadMoodzChart(showMoodz, showAverages) {
     var request = $.ajax({
         type: "GET",
-        url: "#{rawJS url}"
+        url: "#{rawJS loadUrl}"
     });
 
     request.done(function (msg) {
@@ -166,6 +166,14 @@ function toggleShowAverages() {
 
     averagesOn = !averagesOn;
 }
+
+$("#newMood").click(function () {
+    window.location = "#{rawJS createMoodUrl}";
+});
+
+$("#createVariable").click(function () {
+    window.location = "#{rawJS createVariableUrl}";
+});
 
 $("#showMoodz").click(toggleShowMoodz);
 $("#showAverages").click(toggleShowAverages);

@@ -34,6 +34,7 @@ import qualified Network.Wai.Middleware.HttpAuth as HttpAuth
 import Handler.Home
 import Handler.Mood.Mood
 import Handler.Mood.Moodz
+import Handler.Variable.Variable
 import Handler.Variable.Variables
 import Handler.Variable.VariableValues
 
