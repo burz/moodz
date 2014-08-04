@@ -94,6 +94,8 @@ function loadMoodzChart(showMoodz, showAverages) {
     request.done(function (msg) {
         var moodz = msg.moodz;
 
+        loadGraph(moodz);
+
         var labels = [];
         var values = [];
 
@@ -105,7 +107,7 @@ function loadMoodzChart(showMoodz, showAverages) {
             values.unshift(moodz[i].value);
         }
 
-        setupMoodzChart(labels, values, showMoodz, showAverages);
+//        setupMoodzChart(labels, values, showMoodz, showAverages);
     });
 
     request.fail(function (jqXHR, textStatus) {
