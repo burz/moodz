@@ -20,7 +20,8 @@ _graphInterface' :: UserId -> Widget
 _graphInterface' userId = do
     renderUrl <- getUrlRender
     let _graph = _graph'
-    let loadUrl = renderUrl $ MoodzR userId
+    let loadValuesBaseUrl = renderUrl $ VariablesR userId
+    let loadMoodzUrl = renderUrl $ MoodzR userId
     let createMoodUrl = renderUrl $ MoodR userId
     let loadVariablesUrl = renderUrl $ VariablesR userId
     let createVariableUrl = renderUrl $ VariableR userId

@@ -1,21 +1,52 @@
-function loadMoodzChart(showMoodz, showAverages) {
-    moodzOn = showMoodz;
-    averagesOn = showAverages;
+var ___moodz___ = null;
+var ___variables___ = {};
 
+function toggleVariable(id) {
+    var handle = "v" + id;
+
+    if(___variables___[handle] === undefined ||
+       ___variables___[handle].values === null) {
+        var request = $.ajax({
+            type: "GET",
+            url: "#{rawJS loadValuesBaseUrl}/values/" + id
+        });
+
+        request.done(function (msg) {
+            ___variables___[handle].values = msg.variables;
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+            alert("Loading of values for mood " + id + " failed: " + textStatus);
+        });
+    } else {
+        reloadGraph();
+    }
+}
+
+toggleVariable(4);
+
+function loadMoodzGraph() {
     var request = $.ajax({
         type: "GET",
-        url: "#{rawJS loadUrl}"
+        url: "#{rawJS loadMoodzUrl}"
     });
 
     request.done(function (msg) {
-        var moodz = msg.moodz;
+        ___moodz___ = msg.moodz;
 
-        loadGraph(moodz);
+        loadGraph(___moodz___);
     });
 
     request.fail(function (jqXHR, textStatus) {
-        alert("Mood save failed: " + textStatus);
+        alert("Loading of moodz failed: " + textStatus);
     });
+}
+
+function reloadMoodzGraph(showMoodz, showAverages) {
+    moodzOn = showMoodz;
+    averagesOn = showAverages;
+
+    reloadGraph(___moodz___);
 }
 
 var moodzOnColor = "rgba(220,220,220,0.2)";
@@ -25,19 +56,19 @@ var moodzOn = false;
 var averagesOn = false;
 
 $("#averageTimeSelect").change(function () {
-    loadMoodzChart(moodzOn, averagesOn);
+    reloadMoodzGraph(moodzOn, averagesOn);
 });
 
 function toggleShowMoodz() {
     if(moodzOn) {
         $("#showMoodz").css("background-color", "#FFF");
 
-        loadMoodzChart(false, averagesOn);
+        reloadMoodzGraph(false, averagesOn);
     }
     else {
         $("#showMoodz").css("background-color", moodzOnColor);
 
-        loadMoodzChart(true, averagesOn);
+        reloadMoodzGraph(true, averagesOn);
     }
 
     moodzOn = !moodzOn;
@@ -47,14 +78,14 @@ function toggleShowAverages() {
     if(averagesOn) {
         $("#showAverages").css("background-color", "#FFF");
 
-        loadMoodzChart(moodzOn, false);
+        reloadMoodzGraph(moodzOn, false);
 
         $("#averageTimeSelectContainer").hide();
     }
     else {
         $("#showAverages").css("background-color", averagesOnColor);
 
-        loadMoodzChart(moodzOn, true);
+        reloadMoodzGraph(moodzOn, true);
 
         $("#averageTimeSelectContainer").show();
     }
@@ -75,11 +106,16 @@ function loadVariables() {
     request.done(function (msg) {
         var variables = msg.variables;
 
-        $.each(variables, function (index, value) {
+        $.each(variables, function (index, variable) {
+            variable.values = null;
+            variable.toggled = false;
+
+            ___variables___["v" + variable.id] = variable;
+
             $("#variableSelect")
                 .append($("<option></option>")
-                    .attr("value", value.id)
-                    .text(value.name));
+                    .attr("value", variable.id)
+                    .text(variable.name));
         });
     });
 
@@ -115,8 +151,10 @@ $("#createVariableValue").click(function () {
 $("#showMoodz").click(toggleShowMoodz);
 $("#showAverages").click(toggleShowAverages);
 
-$("document").ready(function () {
-    toggleShowMoodz();
+$(function () {
+    loadMoodzGraph();
+
+    $("#showMoodz").css("background-color", "#FFF");
 
     $("#showAverages").css("background-color", "#FFF");
 

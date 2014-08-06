@@ -22,6 +22,12 @@ var svg = d3.select("#graphCanvas").append("svg")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+function reloadGraph(data) {
+    $("#graphCanvas svg g").empty();
+
+    loadGraph(data);
+}
+
 function loadGraph(data) {
     color.domain(d3.keys(["moodz"]));
 
