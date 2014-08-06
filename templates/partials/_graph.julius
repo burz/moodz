@@ -55,7 +55,7 @@ function loadGraph(data) {
             .attr("stroke-width", 1)
             .attr("fill", "none");
 
-    svg.selectAll("circle")
+    var circle = svg.selectAll("circle")
             .data(data)
             .enter()
             .append("circle")
@@ -64,5 +64,7 @@ function loadGraph(data) {
             .attr("cx", function (d) { return x(d.time); })
             .attr("cy", function (d) { return y(d.value); })
             .attr("r", 5)
-            .on("click", function (d) { alert("clicked: " + d.time + ", " + d.value) });
+            .on("click", function () {
+                var d = d3.select(this);
+                alert("clicked: " + d.time + ", " + d.value); });
 }

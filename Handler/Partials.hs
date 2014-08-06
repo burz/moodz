@@ -1,7 +1,7 @@
 module Handler.Partials
 ( _userInfo'
 , _graph'
-, _plotInterface'
+, _graphInterface'
 ) where
 
 import Import
@@ -16,13 +16,13 @@ _graph' = do
     addScriptRemote "/static/js/d3.min.js"
     $(widgetFile "partials/_graph")
 
-_plotInterface' :: UserId -> Widget
-_plotInterface' userId = do
+_graphInterface' :: UserId -> Widget
+_graphInterface' userId = do
     renderUrl <- getUrlRender
     let _graph = _graph'
     let loadUrl = renderUrl $ MoodzR userId
     let createMoodUrl = renderUrl $ MoodR userId
     let loadVariablesUrl = renderUrl $ VariablesR userId
     let createVariableUrl = renderUrl $ VariableR userId
-    $(widgetFile "partials/_plotInterface")
+    $(widgetFile "partials/_graphInterface")
 
