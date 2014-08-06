@@ -7,7 +7,6 @@ module Handler.Auth
 
 import Import
 
-
 #ifdef DEVELOPMENT
 maybeAuth :: Handler (Maybe (Entity User))
 maybeAuth = do
