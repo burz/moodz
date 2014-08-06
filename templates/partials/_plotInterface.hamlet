@@ -1,6 +1,4 @@
 <div id="plotInterface">
-    ^{_plot}
-
     ^{_graph}
 
     <div id="averages">

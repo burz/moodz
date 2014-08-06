@@ -49,14 +49,20 @@ function loadGraph(data) {
             .style("text-anchor", "end")
             .text("Value");
 
-    var point = svg.selectAll(".point")
+    svg.append("path")
+            .attr("d", line(data))
+            .attr("stroke", "blue")
+            .attr("stroke-width", 1)
+            .attr("fill", "none");
+
+    svg.selectAll("circle")
             .data(data)
             .enter()
-            .append("g")
-            .attr("class", ".point");
-
-    point.append("path")
-            .attr("class", "line")
-            .attr("d", function (d) { return line(d.value) })
-            .style("stroke", function(d) { return color("moodz") });
+            .append("circle")
+            .attr("stroke", "blue")
+            .attr("fill", "none")
+            .attr("cx", function (d) { return x(d.time); })
+            .attr("cy", function (d) { return y(d.value); })
+            .attr("r", 5)
+            .on("click", function (d) { alert("clicked: " + d.time + ", " + d.value) });
 }
