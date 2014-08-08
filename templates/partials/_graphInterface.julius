@@ -3,27 +3,31 @@ var ___variables___ = {};
 
 function toggleVariable(id) {
     var handle = "v" + id;
+    var variable = ___variables___[handle];
 
-    if(___variables___[handle] === undefined ||
-       ___variables___[handle].values === null) {
+    if(___variables___[handle].values === null) {
         var request = $.ajax({
             type: "GET",
             url: "#{rawJS loadValuesBaseUrl}/values/" + id
         });
 
         request.done(function (msg) {
-            ___variables___[handle].values = msg.variables;
+            variable.values = msg.variableValues;
+
+            variable.toggled = true;
+
+            reloadMoodzGraph();
         });
 
         request.fail(function (jqXHR, textStatus) {
             alert("Loading of values for mood " + id + " failed: " + textStatus);
         });
     } else {
-        reloadGraph();
+        variable.toggled = !variable.toggled;
+
+        reloadMoodzGraph();
     }
 }
-
-toggleVariable(4);
 
 function loadMoodzGraph() {
     var request = $.ajax({
@@ -43,8 +47,13 @@ function loadMoodzGraph() {
 }
 
 function reloadMoodzGraph(showMoodz, showAverages) {
-    moodzOn = showMoodz;
-    averagesOn = showAverages;
+    if(!(showMoodz === undefined)) {
+        moodzOn = showMoodz;
+    }
+
+    if(!(showAverages === undefined)) {
+        averagesOn = showAverages;
+    }
 
     reloadGraph(___moodz___);
 }
@@ -56,19 +65,19 @@ var moodzOn = false;
 var averagesOn = false;
 
 $("#averageTimeSelect").change(function () {
-    reloadMoodzGraph(moodzOn, averagesOn);
+    reloadMoodzGraph();
 });
 
 function toggleShowMoodz() {
     if(moodzOn) {
         $("#showMoodz").css("background-color", "#FFF");
 
-        reloadMoodzGraph(false, averagesOn);
+        reloadMoodzGraph(false);
     }
     else {
         $("#showMoodz").css("background-color", moodzOnColor);
 
-        reloadMoodzGraph(true, averagesOn);
+        reloadMoodzGraph(true);
     }
 
     moodzOn = !moodzOn;

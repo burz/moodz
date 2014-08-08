@@ -79,6 +79,7 @@ library
                  , time                          == 1.4.*
                  , http-types                    == 0.8.*
                  , entropy                       == 0.3.*
+                 , unix                          >= 2.5
 
 executable         moodz
     if flag(library-only)
