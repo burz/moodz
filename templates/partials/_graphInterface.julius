@@ -36,9 +36,12 @@ function loadMoodzGraph() {
     });
 
     request.done(function (msg) {
-        ___moodz___ = msg.moodz;
+        ___moodz___ = {
+            name: "___moodz___",
+            data: msg.moodz,
+        };
 
-        loadGraph(___moodz___);
+        loadGraph([___moodz___]);
     });
 
     request.fail(function (jqXHR, textStatus) {
@@ -55,7 +58,7 @@ function reloadMoodzGraph(showMoodz, showAverages) {
         averagesOn = showAverages;
     }
 
-    reloadGraph(___moodz___);
+    reloadGraph([___moodz___]);
 }
 
 var moodzOnColor = "rgba(220,220,220,0.2)";
@@ -126,6 +129,8 @@ function loadVariables() {
                     .attr("value", variable.id)
                     .text(variable.name));
         });
+
+        toggleVariable(3);
     });
 
     request.fail(function (jqXHR, textStatus) {

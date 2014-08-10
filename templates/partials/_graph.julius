@@ -28,10 +28,16 @@ function reloadGraph(data) {
     loadGraph(data);
 }
 
+function forEachValue(data, f) {
+    data.forEach(function (d) {
+        d.forEach(f);
+    });
+}
+
 function loadGraph(data) {
     color.domain(d3.keys(["moodz"]));
 
-    data.forEach(function (d) {
+    forEachValue(data, function (d) {
         d.time = parseDate(d.created);
     });
 
