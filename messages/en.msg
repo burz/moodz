@@ -1,6 +1,5 @@
 HomeTitle: Moodz
 
-ShowMoodz: Show Moodz
 ShowAverages: Show Averages
 
 NewMood: New Mood

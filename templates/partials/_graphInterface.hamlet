@@ -2,7 +2,6 @@
     ^{_graph}
 
     <div id="averages">
-        <button id="showMoodz">_{MsgShowMoodz}
         <button id="showAverages">_{MsgShowAverages}
 
         <br>

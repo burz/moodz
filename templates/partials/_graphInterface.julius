@@ -64,11 +64,7 @@ function getLoadedLines() {
     return lines;
 }
 
-function reloadMoodzGraph(showMoodz, showAverages) {
-    if(!(showMoodz === undefined)) {
-        moodzOn = showMoodz;
-    }
-
+function reloadMoodzGraph(showAverages) {
     if(!(showAverages === undefined)) {
         averagesOn = showAverages;
     }
@@ -76,43 +72,26 @@ function reloadMoodzGraph(showMoodz, showAverages) {
     reloadGraph(getLoadedLines());
 }
 
-var moodzOnColor = "rgba(220,220,220,0.2)";
 var averagesOnColor = "rgba(151,187,205,0.2)";
 
-var moodzOn = false;
 var averagesOn = false;
 
 $("#averageTimeSelect").change(function () {
     reloadMoodzGraph();
 });
 
-function toggleShowMoodz() {
-    if(moodzOn) {
-        $("#showMoodz").css("background-color", "#FFF");
-
-        reloadMoodzGraph(false);
-    }
-    else {
-        $("#showMoodz").css("background-color", moodzOnColor);
-
-        reloadMoodzGraph(true);
-    }
-
-    moodzOn = !moodzOn;
-}
-
 function toggleShowAverages() {
     if(averagesOn) {
         $("#showAverages").css("background-color", "#FFF");
 
-        reloadMoodzGraph(moodzOn, false);
+        reloadMoodzGraph(false);
 
         $("#averageTimeSelectContainer").hide();
     }
     else {
         $("#showAverages").css("background-color", averagesOnColor);
 
-        reloadMoodzGraph(moodzOn, true);
+        reloadMoodzGraph(true);
 
         $("#averageTimeSelectContainer").show();
     }
@@ -183,13 +162,10 @@ $("#createVariableValue").click(function () {
     window.location = base + tag;
 });
 
-$("#showMoodz").click(toggleShowMoodz);
 $("#showAverages").click(toggleShowAverages);
 
 $(function () {
     loadMoodzGraph();
-
-    $("#showMoodz").css("background-color", "#FFF");
 
     $("#showAverages").css("background-color", "#FFF");
 
