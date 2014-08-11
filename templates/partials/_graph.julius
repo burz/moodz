@@ -95,25 +95,34 @@ function loadGraph(data) {
         });
 
     var circle = node.append("circle")
-        .attr("stroke", function (d) { return d.color; })
+        .attr("stroke", "black")//function (d) { return d.color; })
         .attr("fill", function (d) { return d.color; })
-        .attr("r", 3);
+        .attr("r", 3.75);
 
     $('svg .node').tipsy({
-        gravity: 's',
+        gravity: $.fn.tipsy.autoNS,
         html: true,
         title: function () {
             var d = this.__data__;
 
+            var date = new Date(d.data.created);
+
+            var dataColor = function (c) {
+                return '<span style="font-size: 150%; color: ' +
+                        d.color + ';">' + c + "</span>";
+            };
+
+            var string = "Date: " + dataColor(date.toDateString()) +
+                         "<br>Time: " + dataColor(date.toTimeString()) +
+                         "<br>Value: " + dataColor(d.data.value);
+
             if(d.data.notes === null) {
-                return '<span style="font-size: 150%; color: ' + d.color + ';"> Value: ' +
-                       d.data.value + "</span>";
+                return string;
             }
             else
             {
-                return '<span style="font-size: 150%; color: ' + d.color + ';"> Value: ' +
-                       d.data.value + ", Notes: " + d.data.notes +
-                       "</span>";
+                return string + '<br>Notes:<span style="font-size: 150%; color: ' +
+                       d.color + ';"> ' + d.data.notes + "</span>";
             }
         }
     });
