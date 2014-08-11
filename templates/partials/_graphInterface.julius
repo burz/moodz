@@ -49,6 +49,21 @@ function loadMoodzGraph() {
     });
 }
 
+function getLoadedLines() {
+    var lines = [___moodz___];
+
+    $.map(___variables___, function (value) {
+        if(value.toggled) {
+            lines.push({
+                name: value.name,
+                data: value.values
+            });
+        }
+    });
+
+    return lines;
+}
+
 function reloadMoodzGraph(showMoodz, showAverages) {
     if(!(showMoodz === undefined)) {
         moodzOn = showMoodz;
@@ -58,7 +73,7 @@ function reloadMoodzGraph(showMoodz, showAverages) {
         averagesOn = showAverages;
     }
 
-    reloadGraph([___moodz___]);
+    reloadGraph(getLoadedLines());
 }
 
 var moodzOnColor = "rgba(220,220,220,0.2)";

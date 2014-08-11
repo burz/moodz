@@ -30,22 +30,53 @@ function reloadGraph(data) {
 
 function forEachValue(data, f) {
     data.forEach(function (d) {
-        d.forEach(f);
+        d.data.forEach(f);
     });
 }
 
+function drawPath(data) {
+    svg.append("path")
+            .attr("d", line(data.data))
+            .attr("stroke", "blue")
+            .attr("stroke-width", 1)
+            .attr("fill", "none");
+
+    var circle = svg.selectAll("circle")
+            .data(data.data)
+            .enter()
+            .append("circle")
+            .attr("stroke", "blue")
+            .attr("fill", "none")
+            .attr("cx", function (d) { return x(d.time); })
+            .attr("cy", function (d) { return y(d.value); })
+            .attr("r", 5)
+            .on("click", function () {
+                var d = d3.select(this);
+                alert("clicked: " + d.time + ", " + d.value); });
+}
+
 function loadGraph(data) {
-    color.domain(d3.keys(["moodz"]));
+    color.domain(d3.keys(data.map(function (v) {
+        return v.name;
+    })));
+
+    var times = [];
 
     forEachValue(data, function (d) {
         d.time = parseDate(d.created);
+
+        times.push(d.time);
     });
 
-    x.domain(d3.extent(data, function (d) { return d.time; }));
+    x.domain(d3.extent(times, function (d) { return d; }));
 
     y.domain([
-        d3.min(data, function (d) { return d.value; }),
-        d3.max(data, function (d) { return d.value; })
+        d3.min(data, function (d) {
+            return d3.min(d.data, function (d) { return d.value; });
+        }),
+        d3.max(data, function (d) {
+            return d3.max(d.data, function (d) { return d.value; });
+        })
     ]);
 
     svg.append("g").attr("class", "x axis")
@@ -61,22 +92,7 @@ function loadGraph(data) {
             .style("text-anchor", "end")
             .text("Value");
 
-    svg.append("path")
-            .attr("d", line(data))
-            .attr("stroke", "blue")
-            .attr("stroke-width", 1)
-            .attr("fill", "none");
-
-    var circle = svg.selectAll("circle")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("stroke", "blue")
-            .attr("fill", "none")
-            .attr("cx", function (d) { return x(d.time); })
-            .attr("cy", function (d) { return y(d.value); })
-            .attr("r", 5)
-            .on("click", function () {
-                var d = d3.select(this);
-                alert("clicked: " + d.time + ", " + d.value); });
+    data.forEach(function (v) {
+        drawPath(v);
+    });
 }
