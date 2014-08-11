@@ -111,12 +111,12 @@ function loadGraph(data) {
             var d = this.__data__;
 
             if(d.data.notes === null) {
-                return '<span style="color: ' + d.color + ';"> Value: ' +
+                return '<span style="font-size: 150%; color: ' + d.color + ';"> Value: ' +
                        d.data.value + "</span>";
             }
             else
             {
-                return '<span style="color: ' + d.color + ';"> Value: ' +
+                return '<span style="font-size: 150%; color: ' + d.color + ';"> Value: ' +
                        d.data.value + ", Notes: " + d.data.notes +
                        "</span>";
             }
