@@ -34,27 +34,6 @@ function forEachValue(data, f) {
     });
 }
 
-function drawPath(data) {
-    svg.append("path")
-            .attr("d", line(data.data))
-            .attr("stroke", color(data.name))
-            .attr("stroke-width", 1)
-            .attr("fill", "none");
-
-    var circle = svg.selectAll("circle")
-            .data(data.data)
-            .enter()
-            .append("circle")
-            .attr("stroke", color(data.name))
-            .attr("fill", "none")
-            .attr("cx", function (d) { return x(d.time); })
-            .attr("cy", function (d) { return y(d.value); })
-            .attr("r", 5)
-            .on("click", function () {
-                var d = d3.select(this);
-                alert("clicked: " + d.time + ", " + d.value); });
-}
-
 function loadGraph(data) {
     color.domain(d3.keys(data.map(function (v) {
         return v.name;
@@ -92,7 +71,33 @@ function loadGraph(data) {
             .style("text-anchor", "end")
             .text("Value");
 
+    var circles = [];
+
     data.forEach(function (v) {
-        drawPath(v);
+        var c = color(v.name);
+
+        svg.append("path")
+                .attr("d", line(v.data))
+                .attr("stroke", c)
+                .attr("stroke-width", 1)
+                .attr("fill", "none");
+
+        v.data.forEach(function (d) {
+            circles.push({
+                color: c,
+                time: d.time,
+                value: d.value
+            });
+        });
     });
+
+    var circle = svg.selectAll("circle")
+        .data(circles)
+        .enter()
+        .append("circle")
+        .attr("stroke",function (d) { return d.color; })
+        .attr("fill", "none")
+        .attr("cx", function (d) { return x(d.time); })
+        .attr("cy", function (d) { return y(d.value); })
+        .attr("r", 4);
 }
