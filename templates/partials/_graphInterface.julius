@@ -95,8 +95,6 @@ function toggleShowAverages() {
 
         $("#averageTimeSelectContainer").show();
     }
-
-    averagesOn = !averagesOn;
 }
 
 $("#newMood").click(function () {
