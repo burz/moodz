@@ -71,7 +71,7 @@ function loadGraph(data) {
             .style("text-anchor", "end")
             .text("Value");
 
-    var circles = [];
+    var nodes = [];
 
     data.forEach(function (v) {
         var c = color(v.name);
@@ -83,21 +83,43 @@ function loadGraph(data) {
                 .attr("fill", "none");
 
         v.data.forEach(function (d) {
-            circles.push({
+            nodes.push({
                 color: c,
-                time: d.time,
-                value: d.value
+                data: d
             });
         });
     });
 
-    var circle = svg.selectAll("circle")
-        .data(circles)
+    var node = svg.selectAll(".node")
+        .data(nodes)
         .enter()
-        .append("circle")
-        .attr("stroke",function (d) { return d.color; })
-        .attr("fill", "none")
-        .attr("cx", function (d) { return x(d.time); })
-        .attr("cy", function (d) { return y(d.value); })
-        .attr("r", 4);
+        .append("a")
+        .attr("class", "node")
+        .attr("transform", function (d) {
+            return "translate(" + x(d.data.time) + "," + y(d.data.value) + ")";
+        });
+
+    var circle = node.append("circle")
+        .attr("stroke", function (d) { return d.color; })
+        .attr("fill", function (d) { return d.color; })
+        .attr("r", 3);
+
+    $('svg .node').tipsy({
+        gravity: 's',
+        html: true,
+        title: function () {
+            var d = this.__data__;
+
+            if(d.data.notes === null) {
+                return '<span style="color: ' + d.color + ';"> Value: ' +
+                       d.data.value + "</span>";
+            }
+            else
+            {
+                return '<span style="color: ' + d.color + ';"> Value: ' +
+                       d.data.value + ", Notes: " + d.data.notes +
+                       "</span>";
+            }
+        }
+    });
 }

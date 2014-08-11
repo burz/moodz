@@ -14,6 +14,8 @@ _userInfo' user = $(widgetFile "partials/_userInfo")
 _graph' :: Widget
 _graph' = do
     addScriptRemote "/static/js/d3.min.js"
+    addScriptRemote "/static/js/jquery.tipsy.js"
+    addStylesheetRemote "/static/css/tipsy.css"
     $(widgetFile "partials/_graph")
 
 _graphInterface' :: UserId -> Widget
