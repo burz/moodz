@@ -144,8 +144,6 @@ function loadVariables() {
                     .attr("value", variable.id)
                     .text(variable.name));
         });
-
-        toggleVariable(3);
     });
 
     request.fail(function (jqXHR, textStatus) {
@@ -168,6 +166,14 @@ $("#variableSelect").on("change", function () {
 
 $("#createVariable").click(function () {
     window.location = "#{rawJS createVariableUrl}";
+});
+
+$("#showVariable").click(function () {
+    var val = $("#variableSelect").val();
+
+    if(!(val === "-1")) {
+        toggleVariable(val);
+    }
 });
 
 $("#createVariableValue").click(function () {
