@@ -1,12 +1,12 @@
 module Handler.Mood.Partials
-( _mood',
+( _newMoodBody',
 ) where
 
 import Import
 import Text.Julius
 
-_mood' :: UserId -> Widget
-_mood' userId = do
+_newMoodBody' :: UserId -> Widget
+_newMoodBody' userId = do
     renderUrl <- getUrlRender
     let url = renderUrl $ MoodzR userId
     let home = renderUrl HomeR

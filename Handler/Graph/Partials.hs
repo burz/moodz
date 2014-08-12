@@ -4,6 +4,7 @@ module Handler.Graph.Partials
 ) where
 
 import Handler.Mood.Partials
+import Handler.Variable.Partials
 
 import Import
 import Text.Julius
@@ -24,6 +25,7 @@ _graphInterface' userId = do
     let createMoodUrl = renderUrl $ MoodR userId
     let loadVariablesUrl = renderUrl $ VariablesR userId
     let createVariableUrl = renderUrl $ VariableR userId
-    let _mood = _mood' userId
+    let _newMoodBody = _newMoodBody' userId
+    let _newVariableBody = _newVariableBody' userId
     $(widgetFile "Graph/partials/_graphInterface")
 

@@ -42,7 +42,7 @@
                     <span aria-hidden="true">&times;
                 <h4 class="modal-title" id="newMoodzLabel">_{MsgNewMood}
             <div class="modal-body">
-                ^{_mood}
+                ^{_newMoodBody}
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     _{MsgClose}
@@ -57,7 +57,7 @@
                     <span aria-hidden="true">&times;
                 <h4 class="modal-title" id="newVariableLabel">_{MsgNewVariable}
             <div class="modal-body">
-                ...
+                ^{_newVariableBody}
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     _{MsgClose}
