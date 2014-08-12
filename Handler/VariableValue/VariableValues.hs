@@ -1,4 +1,4 @@
-module Handler.Variable.VariableValues
+module Handler.VariableValue.VariableValues
 ( getVariableValuesR
 , postVariableValuesR
 ) where

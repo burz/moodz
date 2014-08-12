@@ -29,8 +29,8 @@ library
                      Handler.Variable.Auth
                      Handler.Variable.Variable
                      Handler.Variable.Variables
-                     Handler.Variable.VariableValue
-                     Handler.Variable.VariableValues
+                     Handler.VariableValue.VariableValue
+                     Handler.VariableValue.VariableValues
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

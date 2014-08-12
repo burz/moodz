@@ -1,4 +1,4 @@
-module Handler.Variable.VariableValue
+module Handler.VariableValue.VariableValue
 ( getVariableValueR
 ) where
 
@@ -17,5 +17,5 @@ getVariableValueR userId variableId = authVariable' userId variableId
             let _userInfo = _userInfo' user
             let url = renderUrl $ VariableValuesR userId variableId
             let home = renderUrl HomeR
-            $(widgetFile "Variable/variableValue")
+            $(widgetFile "VariableValue/variableValue")
 
