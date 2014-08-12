@@ -134,8 +134,9 @@ function drawAverage (values, averageType) {
     var dateMin = d3.min(values, function (d) { return d.time; });
     var dateMax = d3.max(values, function (d) { return d.time; });
 
-    var currentDate = new Date(dateMin)
+    var currentDate = new Date(dateMin);
     currentDate.setHours(0, 0, 0, 0);
+    currentDate.setDate(currentDate.getDate() - 1);
 
     var dateRange = [new Date(currentDate)];
 
