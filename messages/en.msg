@@ -8,6 +8,7 @@ MoodValue: Your Mood
 MoodNotes: Notes
 SaveMood: Save Mood
 
+OneDay: One Day
 ThreeDay: Three Day
 Week: Week
 Month: Month
