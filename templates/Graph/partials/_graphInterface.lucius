@@ -9,6 +9,10 @@
     right: 10%;
 }
 
+#showAverages {
+    float: right;
+}
+
 #variableSelectDiv {
     position: absolute;
     top: 85%;
