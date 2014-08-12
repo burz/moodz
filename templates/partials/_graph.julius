@@ -22,10 +22,10 @@ var svg = d3.select("#graphCanvas").append("svg")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-function reloadGraph(data) {
+function reloadGraph(data, average) {
     $("#graphCanvas svg g").empty();
 
-    loadGraph(data);
+    loadGraph(data, average);
 }
 
 function forEachValue(data, f) {
@@ -34,7 +34,7 @@ function forEachValue(data, f) {
     });
 }
 
-function loadGraph(data) {
+function loadGraph(data, average) {
     color.domain(d3.keys(data.map(function (v) {
         return v.name;
     })));
@@ -68,21 +68,23 @@ function loadGraph(data) {
 
     var nodes = [];
 
-    data.forEach(function (v) {
-        var c = color(v.name);
+    data.forEach(function (v, i) {
+        if(i != 0 || average === undefined) {
+            var c = color(v.name);
 
-        svg.append("path")
-                .attr("d", line(v.data))
-                .attr("stroke", c)
-                .attr("stroke-width", 1)
-                .attr("fill", "none");
+            svg.append("path")
+                    .attr("d", line(v.data))
+                    .attr("stroke", c)
+                    .attr("stroke-width", 1)
+                    .attr("fill", "none");
 
-        v.data.forEach(function (d) {
-            nodes.push({
-                color: c,
-                data: d
+            v.data.forEach(function (d) {
+                nodes.push({
+                    color: c,
+                    data: d
+                });
             });
-        });
+        }
     });
 
     var node = svg.selectAll(".node")
@@ -126,6 +128,10 @@ function loadGraph(data) {
             }
         }
     })
+
+    if(!(average === undefined)) {
+        drawAverage(average.data, average.selection);
+    }
 }
 
 function drawAverage (values, averageType) {

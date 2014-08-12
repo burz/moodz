@@ -69,10 +69,14 @@ function reloadMoodzGraph(showAverages) {
         averagesOn = showAverages;
     }
 
-    reloadGraph(getLoadedLines());
-
     if(averagesOn) {
-        drawAverage(___moodz___.data, $("#averageTimeSelect").val());
+        reloadGraph(getLoadedLines(), {
+            data: ___moodz___.data,
+            selection: $("#averageTimeSelect").val()
+        });
+    }
+    else {
+        reloadGraph(getLoadedLines());
     }
 }
 
