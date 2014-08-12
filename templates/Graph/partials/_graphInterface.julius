@@ -100,7 +100,7 @@ function toggleShowAverages() {
 }
 
 $("#newMood").attr("data-toggle", "modal")
-        .attr("data-target", "#newMoodzModal");
+        .attr("data-target", "#newMoodModal");
 
 function loadVariables() {
     var request = $.ajax({
@@ -188,5 +188,7 @@ $(function () {
     loadMoodzGraph();
 
     $("#averageTimeSelectContainer").hide();
+
+    $(".inputModal").hide();
 });
 
