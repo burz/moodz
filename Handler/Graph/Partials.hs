@@ -20,14 +20,17 @@ _graph' = do
 _graphInterface' :: UserId -> Widget
 _graphInterface' userId = do
     renderUrl <- getUrlRender
+    messageRender <- getMessageRender
     let _graph = _graph'
     let loadValuesBaseUrl = renderUrl $ VariablesR userId
     let loadMoodzUrl = renderUrl $ MoodzR userId
     let createMoodUrl = renderUrl $ MoodR userId
     let loadVariablesUrl = renderUrl $ VariablesR userId
+    let msgChooseVariable = messageRender MsgChooseVariable
     let createVariableUrl = renderUrl $ VariableR userId
     let _newMoodBody = _newMoodBody' userId
     let _newVariableBody = _newVariableBody' userId
     let _newVariableValueBody = _newVariableValueBody' userId
+    let homeUrl = renderUrl HomeR
     $(widgetFile "Graph/partials/_graphInterface")
 

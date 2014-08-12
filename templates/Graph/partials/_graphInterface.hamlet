@@ -19,7 +19,6 @@
 
     <div id="variables">
         <select id="variableSelect">
-            <option value="-1" selected=true>_{MsgChooseVariable}
 
         <br>
 
@@ -38,38 +37,32 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;
                 <h4 class="modal-title" id="newMoodzLabel">_{MsgNewMood}
             <div class="modal-body">
                 ^{_newMoodBody}
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     _{MsgClose}
-                <button type="button" class="btn btn-primary">
+                <button type="button" id="saveMood" class="btn btn-primary">
                     _{MsgSaveMood}
 
 <div class="modal fade" id="newVariableModal" tabindex="-1" role="dialog" aria-labelledby="newMoodzLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;
                 <h4 class="modal-title" id="newVariableLabel">_{MsgNewVariable}
             <div class="modal-body">
                 ^{_newVariableBody}
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     _{MsgClose}
-                <button type="button" class="btn btn-primary">
+                <button type="button" id="saveVariable" class="btn btn-primary">
                     _{MsgSaveVariable}
 
 <div class="modal fade" id="newVariableValueModal" tabindex="-1" role="dialog" aria-labelledby="newVariableValueLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;
                 <h4 class="modal-title" id="newVariableValueLabel">
                     _{MsgNewVariableValue}
             <div class="modal-body">
@@ -77,6 +70,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     _{MsgClose}
-                <button type="button" class="btn btn-primary">
+                <button type="button" id="saveVariableValue" class="btn btn-primary">
                     _{MsgSaveVariableValue}
 

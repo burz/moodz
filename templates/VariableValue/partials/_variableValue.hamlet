@@ -7,8 +7,3 @@
 
     <label for="variableValueNotes">_{MsgVariableValueNotes}
     <input type=text id="variableValueNotes">
-
-    <br>
-    <br>
-
-    <button id="saveVariableValue">_{MsgSaveVariableValue}

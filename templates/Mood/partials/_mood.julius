@@ -10,7 +10,7 @@ $("#moodValueSlider").slider({
 
 $("#moodValue").text($("#moodValueSlider").slider("value"));
 
-function sendMood(type) {
+function sendMood(type, callback) {
     var data = {
         value: $("#moodValue").text(),
         notes: $("#moodNotes").val()
@@ -24,14 +24,10 @@ function sendMood(type) {
     });
 
     request.done(function (msg) {
-        window.location = "#{rawJS home}";
+        callback();
     });
 
     request.fail(function (jqXHR, textStatus) {
         alert("Mood save failed: " + textStatus);
     });
 }
-
-$("#moodSave").click(function () {
-    sendMood("POST");
-});

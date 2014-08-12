@@ -11,8 +11,3 @@
 
     <label for"moodNotes">_{MsgMoodNotes}
     <input type=text id="moodNotes">
-
-    <br>
-    <br>
-
-    <button id="moodSave">_{MsgSaveMood}

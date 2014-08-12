@@ -1,4 +1,4 @@
-function sendVariable(type) {
+function sendVariable(type, callback) {
     var data = {
         name: $("#variableName").val()
     };
@@ -11,14 +11,10 @@ function sendVariable(type) {
     });
 
     request.done(function (msg) {
-        window.location = "#{rawJS home}";
+        callback();
     });
 
     request.fail(function (jqXHR, textStatus) {
         alert("Variable save failed: " + textStatus);
     });
 }
-
-$("#variableSave").click(function () {
-    sendVariable("POST");
-});

@@ -9,6 +9,5 @@ _newMoodBody' :: UserId -> Widget
 _newMoodBody' userId = do
     renderUrl <- getUrlRender
     let url = renderUrl $ MoodzR userId
-    let home = renderUrl HomeR
     $(widgetFile "Mood/partials/_mood")
 

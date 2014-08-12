@@ -1,8 +1,3 @@
 <center>
     <label for="variableName">_{MsgVariableName}
     <input type=text id="variableName">
-
-    <br>
-    <br>
-
-    <button id="variableSave">_{MsgSaveVariable}

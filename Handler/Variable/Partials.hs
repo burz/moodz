@@ -9,6 +9,5 @@ _newVariableBody' :: UserId -> Widget
 _newVariableBody' userId = do
     renderUrl <- getUrlRender
     let url = renderUrl $ VariablesR userId
-    let home = renderUrl HomeR
     $(widgetFile "Variable/partials/_variable")
 

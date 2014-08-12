@@ -111,6 +111,11 @@ function loadVariables() {
     request.done(function (msg) {
         var variables = msg.variables;
 
+        $("#variableSelect").empty()
+                .append($("<option></option>")
+                     .attr("value", "-1")
+                     .text("#{rawJS msgChooseVariable}"));
+
         $.each(variables, function (index, variable) {
             variable.values = null;
             variable.toggled = false;
@@ -156,12 +161,25 @@ $("#showVariable").click(function () {
 $("#createVariableValue").attr("data-toggle", "modal")
         .attr("data-target", "#newVariableValueModal");
 
-//    var base = "#{rawJS loadVariablesUrl}";
-//    var tag = "/value/" + $("#variableSelect").val();
-//
-//    window.location = base + tag;
-
 $("#showAverages").click(toggleShowAverages);
+
+$("#saveMood").click(function () {
+    sendMood("POST", function () {
+        window.location = "#{rawJS homeUrl}";
+    });
+});
+
+$("#saveVariable").click(function () {
+    sendVariable("POST", function () {
+        window.location = "#{rawJS homeUrl}";
+    });
+});
+
+$("#saveVariableValue").click(function () {
+    sendVariableValue("POST", function () {
+        window.location = "#{rawJS homeUrl}";
+    });
+});
 
 $(function () {
     loadMoodzGraph();
