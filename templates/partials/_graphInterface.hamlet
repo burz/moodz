@@ -1,8 +1,11 @@
 <div id="plotInterface">
     ^{_graph}
 
+    <div id="dateSlider">
+
     <div id="averages">
-        <button id="showAverages">_{MsgShowAverages}
+        <button id="showAverages" class="btn btn-default">
+            _{MsgShowAverages}
 
         <br>
 
@@ -18,12 +21,15 @@
         <select id="variableSelect">
             <option value="-1" selected=true>_{MsgChooseVariable}
 
-        <button id="createVariable">_{MsgNewVariable}
-
         <br>
 
-        <div id="variableOptionsContainer">
-            <button id="showVariable">_{MsgShowVariable}
-            <button id="createVariableValue">_{MsgCreateVariableValue}
+        <div class="btn-group">
+            <button id="createVariable" class="btn btn-default">
+                _{MsgNewVariable}
+            <button id="showVariable" class="btn btn-default variableOption">
+                _{MsgShowVariable}
+            <button id="createVariableValue" class="btn btn-default variableOption">
+                _{MsgCreateVariableValue}
 
-    <button id="newMood">_{MsgNewMood}
+    <button id="newMood" class="btn btn-default">
+        _{MsgNewMood}

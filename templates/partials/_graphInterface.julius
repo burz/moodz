@@ -125,17 +125,17 @@ function loadVariables() {
         alert("Could not load variables: " + textStatus);
     });
 
-    $("#variableOptionsContainer").hide();
+    $(".variableOption").addClass("disabled");
 }
 
 $(loadVariables);
 
 $("#variableSelect").on("change", function () {
     if(this.value === "-1") {
-        $("#variableOptionsContainer").hide();
+        $(".variableOption").addClass("disabled");
     }
     else {
-        $("#variableOptionsContainer").show();
+        $(".variableOption").removeClass("disabled");
     }
 });
 
