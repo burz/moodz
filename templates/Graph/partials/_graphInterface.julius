@@ -141,9 +141,15 @@ $(loadVariables);
 $("#variableSelect").on("change", function () {
     if(this.value === "-1") {
         $(".variableOption").addClass("disabled");
+
+        $("#createVariableValue").removeAttr("data-toggle")
+            .removeAttr("data-target");
     }
     else {
         $(".variableOption").removeClass("disabled");
+
+        $("#createVariableValue").attr("data-toggle", "modal")
+            .attr("data-target", "#newVariableValueModal");
     }
 });
 
@@ -157,9 +163,6 @@ $("#showVariable").click(function () {
         toggleVariable(val);
     }
 });
-
-$("#createVariableValue").attr("data-toggle", "modal")
-        .attr("data-target", "#newVariableValueModal");
 
 $("#showAverages").click(toggleShowAverages);
 
