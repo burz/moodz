@@ -30,6 +30,7 @@ library
                      Handler.Variable.Partials
                      Handler.Variable.Variable
                      Handler.Variable.Variables
+                     Handler.VariableValue.Partials
                      Handler.VariableValue.VariableValue
                      Handler.VariableValue.VariableValues
 

@@ -1,0 +1,25 @@
+function sendVariableValue(type) {
+    var data = {
+        value: $("#variableValueValue").val(),
+        notes: $("#variableValueNotes").val()
+    };
+
+    var request = $.ajax({
+        type: type,
+        url: "#{rawJS url}/values/" + $("#variableSelect").val(),
+        contentType: "application/json",
+        data: JSON.stringify(data)
+    });
+
+    request.done(function (msg) {
+        window.location = "#{rawJS home}";
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Variable value save failed: " + textStatus);
+    });
+}
+
+$("#saveVariableValue").click(function () {
+    sendVariableValue("POST");
+});
