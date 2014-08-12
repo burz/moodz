@@ -1,5 +1,7 @@
 HomeTitle: Moodz
 
+Close: Close
+
 ShowAverages: Show Averages
 
 NewMood: New Mood
@@ -21,7 +23,7 @@ SaveVariable: Save Variable
 ChooseVariable: Choose Variable
 ShowVariable: Show Variable
 
-CreateVariableValue: New Value
+NewVariableValue: New Value
 VariableValueValue: Value
 VariableValueNotes: Notes
 SaveVariableValue: Save Value

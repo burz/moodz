@@ -22,6 +22,8 @@ library
                      Handler.Auth
                      Handler.Partials
                      Handler.Home
+                     Handler.Graph.Partials
+                     Handler.Mood.Partials
                      Handler.Mood.Mood
                      Handler.Mood.Moodz
                      Handler.Variable.Auth

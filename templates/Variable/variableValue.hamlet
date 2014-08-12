@@ -1,7 +1,7 @@
 ^{_userInfo}
 
 <center>
-    <h3>_{MsgCreateVariableValue} For Variable #{variableName variable}
+    <h3>_{MsgNewVariableValue} For Variable #{variableName variable}
 
 <center>
     <label for="variableValueValue">_{MsgVariableValueValue}

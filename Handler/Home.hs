@@ -3,6 +3,7 @@ module Handler.Home
 ) where
 
 import Handler.Partials
+import Handler.Graph.Partials
 
 import Import
 import Yesod.Auth

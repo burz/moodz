@@ -1,0 +1,81 @@
+<div id="plotInterface">
+    ^{_graph}
+
+    <div id="dateSlider">
+
+    <div id="averages">
+        <button id="showAverages" class="btn btn-default">
+            _{MsgShowAverages}
+
+        <br>
+
+        <div id="averageTimeSelectContainer">
+            <select id="averageTimeSelect">
+                <option value="1" selected=true>_{MsgOneDay}
+                <option value="3">_{MsgThreeDay}
+                <option value="7">_{MsgWeek}
+                <option value="-1">_{MsgMonth}
+                <option value="-2">_{MsgYear}
+
+    <div id="variables">
+        <select id="variableSelect">
+            <option value="-1" selected=true>_{MsgChooseVariable}
+
+        <br>
+
+        <div class="btn-group">
+            <button id="createVariable" class="btn btn-default">
+                _{MsgNewVariable}
+            <button id="showVariable" class="btn btn-default variableOption">
+                _{MsgShowVariable}
+            <button id="createVariableValue" class="btn btn-default variableOption">
+                _{MsgNewVariableValue}
+
+    <button id="newMood" class="btn btn-default">
+        _{MsgNewMood}
+
+<div class="modal fade" id="newMoodzModal" tabindex="-1" role="dialog" aria-labelledby="newMoodzLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;
+                <h4 class="modal-title" id="newMoodzLabel">_{MsgNewMood}
+            <div class="modal-body">
+                ^{_mood}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    _{MsgClose}
+                <button type="button" class="btn btn-primary">
+                    _{MsgSaveMood}
+
+<div class="modal fade" id="newVariableModal" tabindex="-1" role="dialog" aria-labelledby="newMoodzLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;
+                <h4 class="modal-title" id="newVariableLabel">_{MsgNewVariable}
+            <div class="modal-body">
+                ...
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    _{MsgClose}
+                <button type="button" class="btn btn-primary">
+                    _{MsgSaveVariable}
+
+<div class="modal fade" id="newVariableValueModal" tabindex="-1" role="dialog" aria-labelledby="newVariableValueLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;
+                <h4 class="modal-title" id="newVariableValueLabel">_{MsgNewVariableValue}
+            <div class="modal-body">
+                ...
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    _{MsgClose}
+                <button type="button" class="btn btn-primary">
+                    _{MsgSaveVariableValue}
+

@@ -99,9 +99,8 @@ function toggleShowAverages() {
     }
 }
 
-$("#newMood").click(function () {
-    window.location = "#{rawJS createMoodUrl}";
-});
+$("#newMood").attr("data-toggle", "modal")
+        .attr("data-target", "#newMoodzModal");
 
 function loadVariables() {
     var request = $.ajax({
@@ -143,9 +142,8 @@ $("#variableSelect").on("change", function () {
     }
 });
 
-$("#createVariable").click(function () {
-    window.location = "#{rawJS createVariableUrl}";
-});
+$("#createVariable").attr("data-toggle", "modal")
+        .attr("data-target", "#newVariableModal");
 
 $("#showVariable").click(function () {
     var val = $("#variableSelect").val();
@@ -155,12 +153,13 @@ $("#showVariable").click(function () {
     }
 });
 
-$("#createVariableValue").click(function () {
-    var base = "#{rawJS loadVariablesUrl}";
-    var tag = "/value/" + $("#variableSelect").val();
+$("#createVariableValue").attr("data-toggle", "modal")
+        .attr("data-target", "#newVariableValueModal");
 
-    window.location = base + tag;
-});
+//    var base = "#{rawJS loadVariablesUrl}";
+//    var tag = "/value/" + $("#variableSelect").val();
+//
+//    window.location = base + tag;
 
 $("#showAverages").click(toggleShowAverages);
 

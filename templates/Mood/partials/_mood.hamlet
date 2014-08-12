@@ -1,0 +1,18 @@
+<center>
+    <label for="moodValue">_{MsgMoodValue}
+    <div id="moodValue">
+
+    <br>
+
+    <div id="moodValueSlider">
+
+    <br>
+    <br>
+
+    <label for"moodNotes">_{MsgMoodNotes}
+    <input type=text id="moodNotes">
+
+    <br>
+    <br>
+
+    <button id="moodSave">_{MsgSaveMood}

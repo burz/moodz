@@ -17,6 +17,7 @@ $newline never
         <script src="/static/js/jquery.min.js">
         <script src="/static/js/jquery-ui.min.js">
         <link rel="stylesheet" href="/static/css/jquery-ui.min.css">
+        <script src="/static/js/bootstrap.min.js">
 
         ^{pageHead pc}
 
