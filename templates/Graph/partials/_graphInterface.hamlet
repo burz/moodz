@@ -17,18 +17,16 @@
                 <option value="-1">_{MsgMonth}
                 <option value="-2">_{MsgYear}
 
-    <div id="variables">
+    <div id="variableSelectDiv">
         <select id="variableSelect">
 
-        <br>
-
-        <div class="btn-group">
-            <button id="createVariable" class="btn btn-default">
-                _{MsgNewVariable}
-            <button id="showVariable" class="btn btn-default variableOption">
-                _{MsgShowVariable}
-            <button id="createVariableValue" class="btn btn-default variableOption">
-                _{MsgNewVariableValue}
+    <div id="variableButtons" class="btn-group">
+        <button id="createVariable" class="btn btn-default">
+            _{MsgNewVariable}
+        <button id="showVariable" class="btn btn-default variableOption">
+            _{MsgShowVariable}
+        <button id="createVariableValue" class="btn btn-default variableOption">
+            _{MsgNewVariableValue}
 
     <button id="newMood" class="btn btn-default">
         _{MsgNewMood}

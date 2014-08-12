@@ -9,8 +9,14 @@
     right: 10%;
 }
 
-#variables {
+#variableSelectDiv {
     position: absolute;
     top: 85%;
-    left: 30%;
+    left: 25%;
+}
+
+#variableButtons {
+    position: absolute;
+    top: 85%;
+    left: 45%;
 }
