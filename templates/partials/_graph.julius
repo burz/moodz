@@ -125,5 +125,115 @@ function loadGraph(data) {
                        d.color + ';"> ' + d.data.notes + "</span>";
             }
         }
+    })
+}
+
+function drawAverage (values, averageType) {
+    var data = [];
+
+    var dateMin = d3.min(values, function (d) { return d.time; });
+    var dateMax = d3.max(values, function (d) { return d.time; });
+
+    var currentDate = new Date(dateMin)
+    currentDate.setHours(0, 0, 0, 0);
+
+    var dateRange = [new Date(currentDate)];
+
+    var getAverage = function (i) {
+        var nextDate = dateRange[i];
+
+        var relevantValues = [];
+
+        if(i < 0) {
+            relevantValues = values.filter(function (d) {
+                return d.time < nextDate;
+            });
+        }
+        else {
+            var previousDate = dateRange[i - 1];
+
+            relevantValues = values.filter(function (d) {
+                return previousDate < d.time && d.time < nextDate;
+            });
+        }
+
+        if(relevantValues.length === 0) {
+            return 0;
+        }
+
+        return relevantValues.map(function (value) {
+            return value.value;
+        }).reduce(function (previous, current) {
+            return previous + current;
+        }) / relevantValues.length;
+    }
+
+    var data = [];
+
+    if(averageType === "3") {
+        for(var i = 1; currentDate <= dateMax; ++i) {
+            currentDate.setDate(currentDate.getDate() + 3);
+
+            dateRange.push(new Date(currentDate));
+
+            data.push({
+                time: dateRange[i],
+                value: getAverage(i)
+            });
+        }
+    }
+    else if(averageType === "7") {
+        for(var i = 1; currentDate <= dateMax; ++i) {
+            currentDate.setDate(currentDate.getDate() + 7);
+
+            dateRange.push(new Date(currentDate));
+
+            data.push({
+                time: dateRange[i],
+                value: getAverage(i)
+            });
+        }
+    }
+    else if(averageType === "-1") {
+
+    }
+    else {
+
+    }
+
+    svg.append("path")
+            .attr("d", line(data))
+            .attr("stroke", "lightgreen")
+            .attr("stroke-width", 1)
+            .attr("fill", "none");
+
+    var node = svg.selectAll(".averageNode")
+        .data(data)
+        .enter()
+        .append("a")
+        .attr("class", "averageNode")
+        .attr("transform", function (d) {
+            return "translate(" + x(d.time) + "," + y(d.value) + ")";
+        });
+
+    var circle = node.append("circle")
+        .attr("stroke", "black")
+        .attr("fill", "lightgreen")
+        .attr("r", 3.75);
+
+    $('svg .averageNode').tipsy({
+        gravity: $.fn.tipsy.autoNS,
+        html: true,
+        title: function () {
+            var d = this.__data__;
+
+            var dataColor = function (c) {
+                return '<span style="font-size: 150%; color: lightgreen;">' + c + "</span>";
+            };
+
+             return "Date: " + dataColor(d.time.toDateString()) +
+                    "<br>Time: " + dataColor(d.time.toTimeString()) +
+                    "<br>Average: " + dataColor(d.value);
+        }
     });
 }
