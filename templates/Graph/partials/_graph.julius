@@ -7,7 +7,7 @@ var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ").parse;
 var x = d3.time.scale().range([0, width]);
 var y = d3.scale.linear().range([height, 0]);
 
-var color = d3.scale.category10();
+var color = d3.scale.category20();
 
 var xAxis = d3.svg.axis().scale(x).orient("bottom");
 var yAxis = d3.svg.axis().scale(y).orient("left");
@@ -35,9 +35,11 @@ function forEachValue(data, f) {
 }
 
 function loadGraph(data, average) {
-    color.domain(d3.keys(data.map(function (v) {
+    var names = data.map(function (v) {
         return v.name;
-    })));
+    }).push("average");
+
+    color.domain(d3.keys(names));
 
     var times = [];
 
@@ -59,7 +61,7 @@ function loadGraph(data, average) {
     ]);
 
     svg.append("g").attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate(0," + (height + 10) + ")")
             .call(xAxis);
 
     svg.append("g").attr("class", "y axis")
@@ -222,7 +224,7 @@ function drawAverage (values, averageType) {
 
     svg.append("path")
             .attr("d", line(data))
-            .attr("stroke", "lightgreen")
+            .attr("stroke", color("average"))
             .attr("stroke-width", 1)
             .attr("fill", "none");
 
@@ -237,7 +239,7 @@ function drawAverage (values, averageType) {
 
     var circle = node.append("circle")
         .attr("stroke", "black")
-        .attr("fill", "lightgreen")
+        .attr("fill", color("average"))
         .attr("r", 3.75);
 
     $('svg .averageNode').tipsy({
