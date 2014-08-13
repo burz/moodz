@@ -37,3 +37,15 @@
                     _{MsgClose}
                 <button type="button" id="saveVariableValue" class="btn btn-primary">
                     _{MsgSaveVariableValue}
+
+<div class="modal fade inputModal" id="addMoreModal" tabindex="-1" role="dialog" aria-labelledby="addMoreLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addMoreLabel">
+                    _{MsgAddMoreMoodz}
+            <div class="modal-body">
+                ^{_addMoreBody}
+            <div class="modal-footer">
+                <button type="button" id="saveAddMoreMood" class="btn btn-primary">
+                    _{MsgSaveMood}

@@ -1,17 +1,28 @@
 $("#saveMood").click(function () {
     sendMood("POST", function () {
         window.location = "#{rawJS homeUrl}";
-    }); 
+    });
 });
 
 $("#saveVariable").click(function () {
     sendVariable("POST", function () {
         window.location = "#{rawJS homeUrl}";
-    }); 
+    });
 });
 
 $("#saveVariableValue").click(function () {
     sendVariableValue("POST", function () {
         window.location = "#{rawJS homeUrl}";
-    }); 
+    });
+});
+
+$("#saveAddMoreMood").click(function () {
+    sendAddMoreMood("POST", function () {
+        if($("#numberOfMoodValues").text() < "1") {
+            loadMoodzGraph();
+        }
+        else {
+            window.location = "#{rawJS homeUrl}";
+        }
+    });
 });

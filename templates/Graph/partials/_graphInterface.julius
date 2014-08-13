@@ -36,12 +36,21 @@ function loadMoodzGraph() {
     });
 
     request.done(function (msg) {
-        ___moodz___ = {
-            name: "___moodz___",
-            data: msg.moodz,
-        };
+        var moodz = msg.moodz;
 
-        loadGraph([___moodz___]);
+        if(moodz.length < 2) {
+            $("#numberOfMoodValues").text(moodz.length);
+
+            $("#addMoreModal").modal('show');
+        }
+        else {
+            ___moodz___ = {
+                name: "___moodz___",
+                data: moodz
+            };
+
+            loadGraph([___moodz___]);
+        }
     });
 
     request.fail(function (jqXHR, textStatus) {

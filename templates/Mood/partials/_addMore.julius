@@ -1,0 +1,34 @@
+$("#addMoreMoodValueSlider").slider({
+    range: "max",
+    min: 0,
+    max: 100,
+    value: 50,
+    slide: function (evnt, ui) {
+        $("#addMoreMoodValue").text(ui.value);
+    }
+});
+
+$("#addMoreMoodValue").text($("#addMoreMoodValueSlider")
+    .slider("value"));
+
+function sendAddMoreMood(type, callback) {
+    var data = {
+        value: $("#addMoreMoodValue").text(),
+        notes: $("#addMoreMoodNotes").val()
+    };
+
+    var request = $.ajax({
+        type: type,
+        url: "#{rawJS url}",
+        contentType: "application/json",
+        data: JSON.stringify(data)
+    });
+
+    request.done(function (msg) {
+        callback();
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Mood save failed: " + textStatus);
+    });
+}

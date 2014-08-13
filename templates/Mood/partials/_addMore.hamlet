@@ -1,0 +1,24 @@
+<center>
+    <center>
+        _{MsgMoodMinimum}
+
+        <br>
+
+        _{MsgYouOnlyHave} #
+        <span id="numberOfMoodValues">
+
+    <br>
+    <br>
+
+    <label for="addMoreMoodValue">_{MsgMoodValue}
+    <div id="addMoreMoodValue">
+
+    <br>
+
+    <div id="addMoreMoodValueSlider">
+
+    <br>
+    <br>
+
+    <label for"addMoreMoodNotes">_{MsgMoodNotes}
+    <input type=text id="addMoreMoodNotes">

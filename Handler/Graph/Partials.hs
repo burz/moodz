@@ -25,6 +25,7 @@ _modals' userId = do
     let _newMoodBody = _newMoodBody' userId
     let _newVariableBody = _newVariableBody' userId
     let _newVariableValueBody = _newVariableValueBody' userId
+    let _addMoreBody = _addMoreBody' userId
     $(widgetFile "Graph/partials/_modals")
 
 _graphInterface' :: UserId -> Widget

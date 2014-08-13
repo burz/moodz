@@ -9,6 +9,9 @@ CreateMood: Create Mood
 MoodValue: Your Mood
 MoodNotes: Notes
 SaveMood: Save Mood
+AddMoreMoodz: Add More Moodz
+MoodMinimum: You must have at least 2 Moodz
+YouOnlyHave: You only have:
 
 OneDay: One Day
 ThreeDay: Three Day
