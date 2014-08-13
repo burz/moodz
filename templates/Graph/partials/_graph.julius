@@ -34,13 +34,7 @@ function forEachValue(data, f) {
     });
 }
 
-function loadGraph(data, average) {
-    var names = data.map(function (v) {
-        return v.name;
-    }).push("average");
-
-    color.domain(d3.keys(names));
-
+function setDomain(data, average) {
     var times = [];
 
     forEachValue(data, function (d) {
@@ -48,6 +42,54 @@ function loadGraph(data, average) {
 
         times.push(d.time);
     });
+
+    if(!(average === undefined)) {
+        if(average.selection === "1") {
+            data.push({
+                data: ___averages___.a1
+            });
+
+            ___averages___.a1.forEach(function (d) {
+                times.push(d.time);
+            });
+        }
+        else if(average.selection === "3") {
+            data.push({
+                data: ___averages___.a3
+            });
+
+            ___averages___.a3.forEach(function (d) {
+                times.push(d.time);
+            });
+        }
+        else if(average.selection === "7") {
+            data.push({
+                data: ___averages___.a7
+            });
+
+            ___averages___.a7.forEach(function (d) {
+                times.push(d.time);
+            });
+        }
+        else if(average.selection === "-1") {
+            data.push({
+                data: ___averages___.am
+            });
+
+            ___averages___.am.forEach(function (d) {
+                times.push(d.time);
+            });
+        }
+        else {
+            data.push({
+                data: ___averages___.ay
+            });
+
+            ___averages___.ay.forEach(function (d) {
+                times.push(d.time);
+            });
+        }
+    }
 
     x.domain(d3.extent(times, function (d) { return d; }));
 
@@ -60,6 +102,24 @@ function loadGraph(data, average) {
         })
     ]);
 
+    if(!(average === undefined)) {
+        data.length -= 1;
+    }
+}
+
+function loadGraph(data, average) {
+    var names = data.map(function (v) {
+        return v.name;
+    }).push("average");
+
+    color.domain(d3.keys(names));
+
+    if(!(average === undefined)) {
+        generateAverage(data[0].data, average.selection);
+    }
+
+    setDomain(data, average);
+
     svg.append("g").attr("class", "x axis")
             .attr("transform", "translate(0," + (height + 10) + ")")
             .call(xAxis);
@@ -67,6 +127,10 @@ function loadGraph(data, average) {
     svg.append("g").attr("class", "y axis")
             .attr("transform", "translate(-10, 0)")
             .call(yAxis);
+
+    if(!(average === undefined)) {
+        drawAverage(average.selection);
+    }
 
     var nodes = [];
 
@@ -99,7 +163,7 @@ function loadGraph(data, average) {
         });
 
     var circle = node.append("circle")
-        .attr("stroke", "black")//function (d) { return d.color; })
+        .attr("stroke", "black")
         .attr("fill", function (d) { return d.color; })
         .attr("r", 3.75);
 
@@ -130,10 +194,6 @@ function loadGraph(data, average) {
             }
         }
     })
-
-    if(!(average === undefined)) {
-        drawAverage(average.data, average.selection);
-    }
 }
 
 var ___averages___ = {
@@ -144,25 +204,12 @@ var ___averages___ = {
     ay: null
 };
 
-function drawAverage (values, averageType) {
-    var data = [];
-
-    if(averageType === "1" && ___averages___.a1 != null) {
-        data = ___averages___.a1;
-    }
-    else if(averageType === "3" && ___averages___.a3 != null) {
-        data = ___averages___.a3;
-    }
-    else if(averageType === "7" && ___averages___.a7 != null) {
-        data = ___averages___.a7;
-    }
-    else if(averageType === "-1" && ___averages___.am != null) {
-        data = ___averages___.am;
-    }
-    else if(averageType === "-2" && ___averages___.ay != null) {
-        data = ___averages___.ay;
-    }
-    else {
+function generateAverage(values, averageType) {
+    if(averageType === "1" && ___averages___.a1 == null ||
+       averageType === "3" && ___averages___.a3 == null ||
+       averageType === "7" && ___averages___.a7 == null ||
+       averageType === "-1" && ___averages___.am == null ||
+       averageType === "-2" && ___averages___.ay == null) {
         var dateMin = d3.min(values, function (d) { return d.time; });
         var dateMax = d3.max(values, function (d) { return d.time; });
 
@@ -200,6 +247,8 @@ function drawAverage (values, averageType) {
                 return previous + current;
             }) / relevantValues.length;
         }
+
+        var data = [];
 
         if(averageType === "1") {
             for(var i = 1; currentDate <= dateMax; ++i) {
@@ -244,11 +293,31 @@ function drawAverage (values, averageType) {
             ___averages___.a7 = data;
         }
         else if(averageType === "-1") {
-
+            ___averages___.am = [];
         }
         else {
-
+            ___averages___.ay = [];
         }
+    }
+}
+
+function drawAverage(selection) {
+    var data = [];
+
+    if(selection === "1") {
+        data = ___averages___.a1;
+    }
+    else if(selection === "3") {
+        data = ___averages___.a3;
+    }
+    else if(selection === "7") {
+        data = ___averages___.a7;
+    }
+    else if(selection === "-1") {
+        data = ___averages___.am;
+    }
+    else {
+        data = ___averages___.ay;
     }
 
     svg.append("path")
