@@ -7,7 +7,7 @@ var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ").parse;
 var x = d3.time.scale().range([0, width]);
 var y = d3.scale.linear().range([height, 0]);
 
-var color = d3.scale.category20();
+var color = d3.scale.category20b();
 
 var xAxis = d3.svg.axis().scale(x).orient("bottom");
 var yAxis = d3.svg.axis().scale(y).orient("left");
@@ -136,90 +136,119 @@ function loadGraph(data, average) {
     }
 }
 
+var ___averages___ = {
+    a1: null,
+    a3: null,
+    a7: null,
+    am: null,
+    ay: null
+};
+
 function drawAverage (values, averageType) {
     var data = [];
 
-    var dateMin = d3.min(values, function (d) { return d.time; });
-    var dateMax = d3.max(values, function (d) { return d.time; });
-
-    var currentDate = new Date(dateMin);
-    currentDate.setHours(0, 0, 0, 0);
-    currentDate.setDate(currentDate.getDate() - 1);
-
-    var dateRange = [new Date(currentDate)];
-
-    var getAverage = function (i) {
-        var nextDate = dateRange[i];
-
-        var relevantValues = [];
-
-        if(i < 0) {
-            relevantValues = values.filter(function (d) {
-                return d.time < nextDate;
-            });
-        }
-        else {
-            var previousDate = dateRange[i - 1];
-
-            relevantValues = values.filter(function (d) {
-                return previousDate < d.time && d.time < nextDate;
-            });
-        }
-
-        if(relevantValues.length === 0) {
-            return 0;
-        }
-
-        return relevantValues.map(function (value) {
-            return value.value;
-        }).reduce(function (previous, current) {
-            return previous + current;
-        }) / relevantValues.length;
+    if(averageType === "1" && ___averages___.a1 != null) {
+        data = ___averages___.a1;
     }
-
-    var data = [];
-
-    if(averageType === "1") {
-        for(var i = 1; currentDate <= dateMax; ++i) {
-            currentDate.setDate(currentDate.getDate() + 1);
-
-            dateRange.push(new Date(currentDate));
-
-            data.push({
-                time: dateRange[i],
-                value: getAverage(i)
-            });
-        }
+    else if(averageType === "3" && ___averages___.a3 != null) {
+        data = ___averages___.a3;
     }
-    else if(averageType === "3") {
-        for(var i = 1; currentDate <= dateMax; ++i) {
-            currentDate.setDate(currentDate.getDate() + 3);
-
-            dateRange.push(new Date(currentDate));
-
-            data.push({
-                time: dateRange[i],
-                value: getAverage(i)
-            });
-        }
+    else if(averageType === "7" && ___averages___.a7 != null) {
+        data = ___averages___.a7;
     }
-    else if(averageType === "7") {
-        for(var i = 1; currentDate <= dateMax; ++i) {
-            currentDate.setDate(currentDate.getDate() + 7);
-
-            dateRange.push(new Date(currentDate));
-
-            data.push({
-                time: dateRange[i],
-                value: getAverage(i)
-            });
-        }
+    else if(averageType === "-1" && ___averages___.am != null) {
+        data = ___averages___.am;
     }
-    else if(averageType === "-1") {
-
+    else if(averageType === "-2" && ___averages___.ay != null) {
+        data = ___averages___.ay;
     }
     else {
+        var dateMin = d3.min(values, function (d) { return d.time; });
+        var dateMax = d3.max(values, function (d) { return d.time; });
 
+        var currentDate = new Date(dateMin);
+        currentDate.setHours(0, 0, 0, 0);
+        currentDate.setDate(currentDate.getDate() - 1);
+
+        var dateRange = [new Date(currentDate)];
+
+        var getAverage = function (i) {
+            var nextDate = dateRange[i];
+
+            var relevantValues = [];
+
+            if(i < 0) {
+                relevantValues = values.filter(function (d) {
+                    return d.time < nextDate;
+                });
+            }
+            else {
+                var previousDate = dateRange[i - 1];
+
+                relevantValues = values.filter(function (d) {
+                    return previousDate < d.time && d.time < nextDate;
+                });
+            }
+
+            if(relevantValues.length === 0) {
+                return 0;
+            }
+
+            return relevantValues.map(function (value) {
+                return value.value;
+            }).reduce(function (previous, current) {
+                return previous + current;
+            }) / relevantValues.length;
+        }
+
+        if(averageType === "1") {
+            for(var i = 1; currentDate <= dateMax; ++i) {
+                currentDate.setDate(currentDate.getDate() + 1);
+
+                dateRange.push(new Date(currentDate));
+
+                data.push({
+                    time: dateRange[i],
+                    value: getAverage(i)
+                });
+            }
+
+            ___averages___.a1 = data;
+        }
+        else if(averageType === "3") {
+            for(var i = 1; currentDate <= dateMax; ++i) {
+                currentDate.setDate(currentDate.getDate() + 3);
+
+                dateRange.push(new Date(currentDate));
+
+                data.push({
+                    time: dateRange[i],
+                    value: getAverage(i)
+                });
+            }
+
+            ___averages___.a3 = data;
+        }
+        else if(averageType === "7") {
+            for(var i = 1; currentDate <= dateMax; ++i) {
+                currentDate.setDate(currentDate.getDate() + 7);
+
+                dateRange.push(new Date(currentDate));
+
+                data.push({
+                    time: dateRange[i],
+                    value: getAverage(i)
+                });
+            }
+
+            ___averages___.a7 = data;
+        }
+        else if(averageType === "-1") {
+
+        }
+        else {
+
+        }
     }
 
     svg.append("path")
