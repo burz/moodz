@@ -32,43 +32,4 @@
     <button id="newMood" class="btn btn-default">
         _{MsgNewMood}
 
-<div class="modal fade inputModal" id="newMoodModal" tabindex="-1" role="dialog" aria-labelledby="newMoodLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="newMoodLabel">_{MsgNewMood}
-            <div class="modal-body">
-                ^{_newMoodBody}
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">
-                    _{MsgClose}
-                <button type="button" id="saveMood" class="btn btn-primary">
-                    _{MsgSaveMood}
-
-<div class="modal fade inputModal" id="newVariableModal" tabindex="-1" role="dialog" aria-labelledby="newMoodzLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="newVariableLabel">_{MsgNewVariable}
-            <div class="modal-body">
-                ^{_newVariableBody}
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">
-                    _{MsgClose}
-                <button type="button" id="saveVariable" class="btn btn-primary">
-                    _{MsgSaveVariable}
-
-<div class="modal fade inputModal" id="newVariableValueModal" tabindex="-1" role="dialog" aria-labelledby="newVariableValueLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="newVariableValueLabel">
-                    _{MsgNewVariableValue}
-            <div class="modal-body">
-                ^{_newVariableValueBody}
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">
-                    _{MsgClose}
-                <button type="button" id="saveVariableValue" class="btn btn-primary">
-                    _{MsgSaveVariableValue}
-
+    ^{_modals}

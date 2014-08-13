@@ -1,5 +1,6 @@
 module Handler.Graph.Partials
 ( _graph'
+, _modals'
 , _graphInterface'
 ) where
 
@@ -17,6 +18,15 @@ _graph' = do
     addStylesheetRemote "/static/css/tipsy.css"
     $(widgetFile "Graph/partials/_graph")
 
+_modals' :: UserId -> Widget
+_modals' userId = do
+    renderUrl <- getUrlRender
+    let homeUrl = renderUrl HomeR
+    let _newMoodBody = _newMoodBody' userId
+    let _newVariableBody = _newVariableBody' userId
+    let _newVariableValueBody = _newVariableValueBody' userId
+    $(widgetFile "Graph/partials/_modals")
+
 _graphInterface' :: UserId -> Widget
 _graphInterface' userId = do
     renderUrl <- getUrlRender
@@ -26,9 +36,6 @@ _graphInterface' userId = do
     let loadMoodzUrl = renderUrl $ MoodzR userId
     let loadVariablesUrl = renderUrl $ VariablesR userId
     let msgChooseVariable = messageRender MsgChooseVariable
-    let _newMoodBody = _newMoodBody' userId
-    let _newVariableBody = _newVariableBody' userId
-    let _newVariableValueBody = _newVariableValueBody' userId
-    let homeUrl = renderUrl HomeR
+    let _modals = _modals' userId
     $(widgetFile "Graph/partials/_graphInterface")
 

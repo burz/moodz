@@ -166,24 +166,6 @@ $("#showVariable").click(function () {
 
 $("#showAverages").click(toggleShowAverages);
 
-$("#saveMood").click(function () {
-    sendMood("POST", function () {
-        window.location = "#{rawJS homeUrl}";
-    });
-});
-
-$("#saveVariable").click(function () {
-    sendVariable("POST", function () {
-        window.location = "#{rawJS homeUrl}";
-    });
-});
-
-$("#saveVariableValue").click(function () {
-    sendVariableValue("POST", function () {
-        window.location = "#{rawJS homeUrl}";
-    });
-});
-
 $(function () {
     loadMoodzGraph();
 
