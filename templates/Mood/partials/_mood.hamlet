@@ -10,4 +10,4 @@
     <br>
 
     <label for"moodNotes">_{MsgMoodNotes}
-    <input type=text id="moodNotes">
+    <textarea id="moodNotes">

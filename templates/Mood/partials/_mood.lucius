@@ -2,3 +2,8 @@
     color: #f6931f;
     font-weight: bold;
 }
+
+#moodNotes {
+    width: 475px;
+    height: 125px;
+}
