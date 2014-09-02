@@ -238,7 +238,7 @@ function generateAverage(values, averageType) {
             }
 
             if(relevantValues.length === 0) {
-                return 0;
+                return null;
             }
 
             return relevantValues.map(function (value) {
@@ -256,10 +256,14 @@ function generateAverage(values, averageType) {
 
                 dateRange.push(new Date(currentDate));
 
-                data.push({
-                    time: dateRange[i],
-                    value: getAverage(i)
-                });
+                var average = getAverage(i);
+
+                if(!(average === null)) {
+                    data.push({
+                        time: dateRange[i],
+                        value: average
+                    });
+                }
             }
 
             ___averages___.a1 = data;
@@ -270,10 +274,12 @@ function generateAverage(values, averageType) {
 
                 dateRange.push(new Date(currentDate));
 
-                data.push({
-                    time: dateRange[i],
-                    value: getAverage(i)
-                });
+                if(!(average === null)) {
+                    data.push({
+                        time: dateRange[i],
+                        value: average
+                    });
+                }
             }
 
             ___averages___.a3 = data;
@@ -284,10 +290,12 @@ function generateAverage(values, averageType) {
 
                 dateRange.push(new Date(currentDate));
 
-                data.push({
-                    time: dateRange[i],
-                    value: getAverage(i)
-                });
+                if(!(average === null)) {
+                    data.push({
+                        time: dateRange[i],
+                        value: average
+                    });
+                }
             }
 
             ___averages___.a7 = data;
