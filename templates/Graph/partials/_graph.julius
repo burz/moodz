@@ -272,9 +272,9 @@ function generateAverage(values, averageType) {
             for(var i = 1; currentDate <= dateMax; ++i) {
                 currentDate.setDate(currentDate.getDate() + 3);
 
-                var average = getAverage(i);
-
                 dateRange.push(new Date(currentDate));
+
+                var average = getAverage(i);
 
                 if(!(average === null)) {
                     data.push({
@@ -290,9 +290,9 @@ function generateAverage(values, averageType) {
             for(var i = 1; currentDate <= dateMax; ++i) {
                 currentDate.setDate(currentDate.getDate() + 7);
 
-                var average = getAverage(i);
-
                 dateRange.push(new Date(currentDate));
+
+                var average = getAverage(i);
 
                 if(!(average === null)) {
                     data.push({
