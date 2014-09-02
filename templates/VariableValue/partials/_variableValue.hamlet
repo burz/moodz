@@ -6,4 +6,4 @@
     <br>
 
     <label for="variableValueNotes">_{MsgVariableValueNotes}
-    <input type=text id="variableValueNotes">
+    <textarea id="variableValueNotes">
