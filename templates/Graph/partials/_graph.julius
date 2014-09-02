@@ -146,6 +146,7 @@ function loadGraph(data, average) {
 
             v.data.forEach(function (d) {
                 nodes.push({
+                    name: v.name,
                     color: c,
                     data: d
                 });
@@ -180,7 +181,8 @@ function loadGraph(data, average) {
                         d.color + ';">' + c + "</span>";
             };
 
-            var string = "Date: " + dataColor(date.toDateString()) +
+            var string = "<h4>" + dataColor(d.name) + "</h4>" +
+                         "Date: " + dataColor(date.toDateString()) +
                          "<br>Time: " + dataColor(date.toTimeString()) +
                          "<br>Value: " + dataColor(d.data.value);
 
@@ -315,21 +317,27 @@ function generateAverage(values, averageType) {
 
 function drawAverage(selection) {
     var data = [];
+    var title = "";
 
     if(selection === "1") {
         data = ___averages___.a1;
+        title = "One Day Average";
     }
     else if(selection === "3") {
         data = ___averages___.a3;
+        title = "Three Day Average";
     }
     else if(selection === "7") {
         data = ___averages___.a7;
+        title = "Weekly Average";
     }
     else if(selection === "-1") {
         data = ___averages___.am;
+        title = "Monthly Average";
     }
     else {
         data = ___averages___.ay;
+        title = "Yearly Average";
     }
 
     svg.append("path")
@@ -362,7 +370,8 @@ function drawAverage(selection) {
                 return '<span style="font-size: 150%; color: lightgreen;">' + c + "</span>";
             };
 
-             return "Date: " + dataColor(d.time.toDateString()) +
+             return "<h4>" + dataColor(title) + "</h4>" +
+                    "Date: " + dataColor(d.time.toDateString()) +
                     "<br>Time: " + dataColor(d.time.toTimeString()) +
                     "<br>Average: " + dataColor(d.value);
         }

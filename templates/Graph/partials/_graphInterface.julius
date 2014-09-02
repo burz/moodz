@@ -45,7 +45,7 @@ function loadMoodzGraph() {
         }
         else {
             ___moodz___ = {
-                name: "___moodz___",
+                name: "Moodz",
                 data: moodz
             };
 
