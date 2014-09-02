@@ -7,7 +7,7 @@ var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ").parse;
 var x = d3.time.scale().range([0, width]);
 var y = d3.scale.linear().range([height, 0]);
 
-var color = d3.scale.category20();
+var color = d3.scale.category10();
 
 var xAxis = d3.svg.axis().scale(x).orient("bottom");
 var yAxis = d3.svg.axis().scale(y).orient("left");
