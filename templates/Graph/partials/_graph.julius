@@ -367,13 +367,14 @@ function drawAverage(selection) {
             var d = this.__data__;
 
             var dataColor = function (c) {
-                return '<span style="font-size: 150%; color: lightgreen;">' + c + "</span>";
+                return '<span style="font-size: 150%; color: ' +
+                       color("average") + ';">' + c + "</span>";
             };
 
-             return "<h4>" + dataColor(title) + "</h4>" +
-                    "Date: " + dataColor(d.time.toDateString()) +
-                    "<br>Time: " + dataColor(d.time.toTimeString()) +
-                    "<br>Average: " + dataColor(d.value);
+            return "<h4>" + dataColor(title) + "</h4>" +
+                   "Date: " + dataColor(d.time.toDateString()) +
+                   "<br>Time: " + dataColor(d.time.toTimeString()) +
+                   "<br>Average: " + dataColor(d.value);
         }
     });
 }
