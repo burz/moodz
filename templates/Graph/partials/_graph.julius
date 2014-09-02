@@ -272,6 +272,8 @@ function generateAverage(values, averageType) {
             for(var i = 1; currentDate <= dateMax; ++i) {
                 currentDate.setDate(currentDate.getDate() + 3);
 
+                var average = getAverage(i);
+
                 dateRange.push(new Date(currentDate));
 
                 if(!(average === null)) {
@@ -287,6 +289,8 @@ function generateAverage(values, averageType) {
         else if(averageType === "7") {
             for(var i = 1; currentDate <= dateMax; ++i) {
                 currentDate.setDate(currentDate.getDate() + 7);
+
+                var average = getAverage(i);
 
                 dateRange.push(new Date(currentDate));
 
