@@ -28,6 +28,18 @@ function reloadGraph(data, average) {
     loadGraph(data, average);
 }
 
+function loadSlider(start, end) {
+    $("#dateSlider").slider({
+        range: true,
+        min: start,
+        max: end,
+        step: (end - start) / 500,
+        values: [start, end],
+        slide: function (evnt, ui) {
+        }
+    });
+}
+
 function forEachValue(data, f) {
     data.forEach(function (d) {
         d.data.forEach(f);
@@ -106,6 +118,8 @@ function setDomain(data, average) {
     if(!(average === undefined)) {
         data.length -= 1;
     }
+
+    loadSlider(d3.min(times).getTime(), d3.max(times).getTime());
 }
 
 function loadGraph(data, average) {

@@ -3,7 +3,6 @@
 
     <div id="dateSlider">
 
-
     <div id="optionButtons" class="btn-group">
         <button id="newMood" class="btn btn-default">
             _{MsgNewMood}
