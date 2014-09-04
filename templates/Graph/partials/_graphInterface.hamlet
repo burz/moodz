@@ -3,25 +3,12 @@
 
     <div id="dateSlider">
 
-    <div id="averages">
+
+    <div id="optionButtons" class="btn-group">
+        <button id="newMood" class="btn btn-default">
+            _{MsgNewMood}
         <button id="showAverages" class="btn btn-default">
             _{MsgShowAverages}
-
-        <br>
-        <br>
-
-        <div id="averageTimeSelectContainer">
-            <select id="averageTimeSelect">
-                <option value="1" selected=true>_{MsgOneDay}
-                <option value="3">_{MsgThreeDay}
-                <option value="7">_{MsgWeek}
-                <option value="-1">_{MsgMonth}
-                <option value="-2">_{MsgYear}
-
-    <div id="variableSelectDiv">
-        <select id="variableSelect">
-
-    <div id="variableButtons" class="btn-group">
         <button id="createVariable" class="btn btn-default">
             _{MsgNewVariable}
         <button id="showVariable" class="btn btn-default variableOption">
@@ -29,7 +16,15 @@
         <button id="createVariableValue" class="btn btn-default variableOption">
             _{MsgNewVariableValue}
 
-    <button id="newMood" class="btn btn-default">
-        _{MsgNewMood}
+    <div id="variableSelectDiv">
+        <select id="variableSelect">
+
+    <div id="averageTimeSelectContainer">
+        <select id="averageTimeSelect">
+            <option value="1" selected=true>_{MsgOneDay}
+            <option value="3">_{MsgThreeDay}
+            <option value="7">_{MsgWeek}
+            <option value="-1">_{MsgMonth}
+            <option value="-2">_{MsgYear}
 
     ^{_modals}

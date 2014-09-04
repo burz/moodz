@@ -1,26 +1,17 @@
-#newMood {
+#optionButtons {
     position: absolute;
     top: 85%;
-}
-
-#averages {
-    position: absolute;
-    top: 85%;
-    right: 10%;
-}
-
-#showAverages {
-    float: right;
+    left: 7%;
 }
 
 #variableSelectDiv {
     position: absolute;
     top: 85%;
-    left: 25%;
+    left: 52%;
 }
 
-#variableButtons {
+#averageTimeSelectContainer {
     position: absolute;
     top: 85%;
-    left: 45%;
+    left: 71%;
 }

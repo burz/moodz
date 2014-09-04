@@ -37,13 +37,14 @@ function forEachValue(data, f) {
 function setDomain(data, average) {
     var times = [];
 
-    forEachValue(data, function (d) {
-        d.time = parseDate(d.created);
+    if(average === undefined) {
+        forEachValue(data, function (d) {
+            d.time = parseDate(d.created);
 
-        times.push(d.time);
-    });
-
-    if(!(average === undefined)) {
+            times.push(d.time);
+        });
+    }
+    else {
         if(average.selection === "1") {
             data.push({
                 data: ___averages___.a1
