@@ -41,6 +41,9 @@ function loadMoodzGraph() {
         if(moodz.length < 2) {
             $("#numberOfMoodValues").text(moodz.length);
 
+            $("#addMoreMoodValueSlider").slider("option", "value", 50);
+            $("#addMoreMoodValue").text("50");
+
             $("#addMoreModal").modal('show');
         }
         else {
